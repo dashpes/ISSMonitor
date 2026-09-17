@@ -1,0 +1,16 @@
+# Build output
+firmware/.pio/
+*.bin
+*.elf
+
+# Vendored third-party libraries -- cloned, not authored here.
+# Restore with scripts/vendor_libs.sh
+firmware/lib/LovyanGFX/
+firmware/lib/Sgp4/
+
+# Local secrets
+firmware/src/secrets.h
+
+# Editor / OS
+.vscode/
+.DS_Store

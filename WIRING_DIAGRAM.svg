@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="900" viewBox="0 0 1340 900" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxMTkyNzgwNC1lNmIyLTQ0Y2EtYTdkOC0zNDBiZmZmMzZkM2EAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaNIvf3grqJ8Ro4ZuEFFePtAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoyZjRlMWNjOS02MmFkLTQ5MDctOTViMC03MWZmYjgyYTc4MTlscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo6yV8LMstq2TCFGs4pYCuNQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggg+i0Aph3V2+kksxQrOprPFGTUj/2u+RH6MzI9vk1QAqkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaFTgk11gSQ6xuRz/ONO/K2QAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAGMxEFYZwMhGkDzy3UOR+0KUrC9aCjPZr0x4y2FKQ87WRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiYZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjExOTI3ODA0LWU2YjItNDRjYS1hN2Q4LTM0MGJmZmYzNmQzYS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjNjYjYyMTQxLTRlZDItNDk3MC04OGIxLTYyZGJjZmRlNjljZXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCD6LQCmHdXb6SSzFCs6ms8UZNSP/a75EfozMj2+TVACqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggsrMNztKXoAywSx6MeU74SMxEzTlXzMmB7x60eXhGcp2iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggvRxMydvpCcuwWenM5/X/FxRz2hhIdno3Qn6JUYCqijB0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQBP2qmZoECKlYsZOTguYmh9Bjiy8yV4G8U7dhaP4xi9o+zE1G9cpbWhA9MLDlOIosDrdNket1oZv1PLSmOCfNtc=</c2pa:manifest></metadata><rect width="100%" height="100%" fill="white"/><rect x="560" y="108" width="200" height="580" rx="10" fill="#f4f4f8" stroke="#333" stroke-width="1.5"/>
+<text x="660.0" y="126" font-size="13" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">DOIT ESP32 DevKit V1</text>
+<text x="660.0" y="142" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">(30-pin, USB-C)</text>
+<path d="M536,130 L560,130" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="134" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">EN</text>
+<path d="M536,168 L560,168" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="172" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">VP 36</text>
+<path d="M536,206 L560,206" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="210" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">VN 39</text>
+<path d="M536,244 L560,244" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="248" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D34</text>
+<path d="M536,282 L560,282" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="286" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D35</text>
+<path d="M536,320 L560,320" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="324" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D32</text>
+<path d="M536,358 L560,358" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="362" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D33</text>
+<path d="M536,396 L560,396" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="400" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D25</text>
+<path d="M536,434 L560,434" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="438" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D26</text>
+<path d="M536,472 L560,472" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="476" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D27</text>
+<path d="M536,510 L560,510" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="514" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D14</text>
+<path d="M536,548 L560,548" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="552" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D12</text>
+<path d="M536,586 L560,586" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="590" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">D13</text>
+<path d="M536,624 L560,624" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="628" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">GND</text>
+<path d="M536,662 L560,662" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="666" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#333">VIN</text>
+<path d="M760,130 L784,130" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="134" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D23</text>
+<path d="M760,168 L784,168" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="172" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D22</text>
+<path d="M760,206 L784,206" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="210" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">TX0</text>
+<path d="M760,244 L784,244" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="248" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">RX0</text>
+<path d="M760,282 L784,282" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="286" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D21</text>
+<path d="M760,320 L784,320" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="324" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D19</text>
+<path d="M760,358 L784,358" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="362" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D18</text>
+<path d="M760,396 L784,396" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="400" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D5</text>
+<path d="M760,434 L784,434" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="438" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">TX2 17</text>
+<path d="M760,472 L784,472" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="476" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">RX2 16</text>
+<path d="M760,510 L784,510" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="514" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D4</text>
+<path d="M760,548 L784,548" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="552" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D2</text>
+<path d="M760,586 L784,586" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="590" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">D15</text>
+<path d="M760,624 L784,624" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="628" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">GND</text>
+<path d="M760,662 L784,662" stroke="#888" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="754" y="666" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#333">3V3</text>
+<rect x="630" y="680" width="60" height="18" rx="4" fill="#ddd" stroke="#666" stroke-width="1.5"/>
+<text x="660" y="693" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#333">USB-C</text>
+<path d="M34,95 L34,790" stroke="#111111" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="34" y="88" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#111111">GND</text>
+<path d="M52,95 L52,790" stroke="#d62728" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="60" y="88" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#d62728">3V3</text>
+<rect x="80" y="100" width="220" height="96" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="190.0" y="115" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">ENCODER L  (lower-left screen)</text>
+<text x="190.0" y="130" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">KY-040 rotary encoder</text>
+<text x="190.0" y="142" font-size="8" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#888">header order on the board: GND  +  SW  DT  CLK</text>
+<text x="294" y="159" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">CLK</text>
+<text x="294" y="173" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">DT</text>
+<text x="294" y="187" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">SW</text>
+<path d="M80,160 L52,160" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="160" r="3.2" fill="#d62728"/>
+<text x="85" y="163" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#d62728">+</text>
+<path d="M80,180 L34,180" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="180" r="3.2" fill="#111111"/>
+<text x="85" y="183" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#111111">GND</text>
+<path d="M300,156 L352,156 L352,168 L536,168" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="153" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">VP 36</text>
+<path d="M300,170 L364,170 L364,206 L536,206" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="167" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">VN 39</text>
+<path d="M300,184 L376,184 L376,472 L536,472" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="181" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">D27</text>
+<rect x="80" y="215" width="220" height="96" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="190.0" y="230" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">ENCODER R  (lower-right screen)</text>
+<text x="190.0" y="245" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">KY-040 rotary encoder</text>
+<text x="190.0" y="257" font-size="8" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#888">header order on the board: GND  +  SW  DT  CLK</text>
+<text x="294" y="274" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">CLK</text>
+<text x="294" y="288" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">DT</text>
+<text x="294" y="302" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="bold" fill="#222">SW</text>
+<path d="M80,275 L52,275" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="275" r="3.2" fill="#d62728"/>
+<text x="85" y="278" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#d62728">+</text>
+<path d="M80,295 L34,295" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="295" r="3.2" fill="#111111"/>
+<text x="85" y="298" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#111111">GND</text>
+<path d="M300,271 L388,271 L388,282 L536,282" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="268" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">D35</text>
+<path d="M784,510 L780,510 L780,78 L400,78 L400,285 L300,285" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="282" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">D4 ↑</text>
+<path d="M784,320 L788,320 L788,78 L412,78 L412,299 L300,299" stroke="#0b7a5b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="296" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#0b7a5b">D19 ↑</text>
+<rect x="80" y="340" width="220" height="58" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="190.0" y="355" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">LIGHT SENSOR  (GL5539, top plate)</text>
+<text x="88" y="374" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">3V3 → [LDR] → D34 node → [100 kΩ] → GND</text>
+<path d="M80,380 L52,380" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="380" r="3.2" fill="#d62728"/>
+<path d="M80,392 L34,392" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="392" r="3.2" fill="#111111"/>
+<path d="M300,380 L424,380 L424,244 L536,244" stroke="#e07b00" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="377" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#e07b00">D34</text>
+<rect x="170" y="408" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="425" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW1  NIGHT</text>
+<path d="M270,421 L286,412" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="421" r="3.2" fill="#333"/>
+<circle cx="292" cy="421" r="3.2" fill="#333"/>
+<path d="M170,421 L34,421" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="421" r="3.2" fill="#111111"/>
+<path d="M300,421 L436,421 L436,320 L536,320" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="418" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D32</text>
+<rect x="170" y="452" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="469" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW2  UNITS</text>
+<path d="M270,465 L286,456" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="465" r="3.2" fill="#333"/>
+<circle cx="292" cy="465" r="3.2" fill="#333"/>
+<path d="M170,465 L34,465" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="465" r="3.2" fill="#111111"/>
+<path d="M300,465 L448,465 L448,358 L536,358" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="462" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D33</text>
+<rect x="170" y="496" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="513" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW3  ALERT</text>
+<path d="M270,509 L286,500" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="509" r="3.2" fill="#333"/>
+<circle cx="292" cy="509" r="3.2" fill="#333"/>
+<path d="M170,509 L34,509" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="509" r="3.2" fill="#111111"/>
+<path d="M300,509 L460,509 L460,396 L536,396" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="506" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D25</text>
+<rect x="170" y="540" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="557" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW4  TRACK</text>
+<path d="M270,553 L286,544" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="553" r="3.2" fill="#333"/>
+<circle cx="292" cy="553" r="3.2" fill="#333"/>
+<path d="M170,553 L34,553" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="553" r="3.2" fill="#111111"/>
+<path d="M300,553 L472,553 L472,434 L536,434" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="550" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D26</text>
+<rect x="170" y="584" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="601" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW5  AUX 1</text>
+<path d="M270,597 L286,588" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="597" r="3.2" fill="#333"/>
+<circle cx="292" cy="597" r="3.2" fill="#333"/>
+<path d="M170,597 L34,597" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="597" r="3.2" fill="#111111"/>
+<path d="M300,597 L484,597 L484,510 L536,510" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="594" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D14</text>
+<rect x="170" y="628" width="130" height="26" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="645" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SW6  AUX 2</text>
+<path d="M270,641 L286,632" stroke="#333" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="270" cy="641" r="3.2" fill="#333"/>
+<circle cx="292" cy="641" r="3.2" fill="#333"/>
+<path d="M170,641 L34,641" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="641" r="3.2" fill="#111111"/>
+<path d="M784,586 L796,586 L796,745 L496,745 L496,641 L300,641" stroke="#4a5a8a" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="638" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#4a5a8a">D15 ↓</text>
+<text x="170" y="674" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#666">Toggles: one lug → GPIO, other lug → GND. No resistor (INPUT_PULLUP).</text>
+<rect x="170" y="703" width="130" height="30" rx="4" fill="#fbfbfb" stroke="#555" stroke-width="1.5"/>
+<text x="176" y="721" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">PASS LED  (green 5 mm)</text>
+<text x="176" y="731" font-size="8" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#666">D13 → [150 Ω] → long leg (+)   short leg (−) → GND</text>
+<path d="M170,716 L34,716" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="716" r="3.2" fill="#111111"/>
+<path d="M300,716 L508,716 L508,586 L536,586" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="303" y="713" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#2ca02c">D13</text>
+<path d="M52,775 L74,775" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="775" r="3.2" fill="#d62728"/>
+<path d="M34,789 L74,789" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="789" r="3.2" fill="#111111"/>
+<path d="M74,769 L74,781" stroke="#333" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M74,783 L74,795" stroke="#333" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="82" y="785" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">C1  100–470 µF   + to 3V3, stripe (−) to GND. Mount close to the ESP32's 3V3/GND pins.</text>
+<path d="M536,624 L34,624" stroke="#111111" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="34" cy="624" r="3.2" fill="#111111"/>
+<path d="M784,662 L804,662 L804,760 L52,760" stroke="#d62728" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="52" cy="760" r="3.2" fill="#d62728"/>
+<circle cx="804" cy="662" r="3.2" fill="#d62728"/>
+<rect x="1010" y="110" width="250" height="150" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="1135.0" y="125" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">TOP screen  (globe / live position)</text>
+<text x="1135.0" y="140" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">Hosyond 1.28" GC9A01, 7-pin</text>
+<text x="1018" y="159" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">VCC</text>
+<path d="M1010,156 L826,156" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="826" cy="156" r="3.2" fill="#d62728"/>
+<text x="1018" y="175" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">GND</text>
+<path d="M1010,172 L842,172" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="842" cy="172" r="3.2" fill="#111111"/>
+<text x="1018" y="191" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SCL</text>
+<path d="M1010,188 L858,188" stroke="#c8a000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="858" cy="188" r="3.2" fill="#c8a000"/>
+<text x="1018" y="207" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SDA</text>
+<path d="M1010,204 L874,204" stroke="#1f77b4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="874" cy="204" r="3.2" fill="#1f77b4"/>
+<text x="1018" y="223" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">DC</text>
+<path d="M1010,220 L890,220" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="890" cy="220" r="3.2" fill="#2ca02c"/>
+<text x="1018" y="239" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">RST</text>
+<path d="M1010,236 L906,236" stroke="#9467bd" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="906" cy="236" r="3.2" fill="#9467bd"/>
+<text x="1018" y="255" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">CS</text>
+<path d="M1010,252 L930,252" stroke="#ff7f0e" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="930" cy="252" r="3.2" fill="#ff7f0e"/>
+<text x="1254" y="255" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#ff7f0e">CS → D21</text>
+<rect x="1010" y="300" width="250" height="150" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="1135.0" y="315" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">LOWER-LEFT screen</text>
+<text x="1135.0" y="330" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">Hosyond 1.28" GC9A01, 7-pin</text>
+<text x="1018" y="349" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">VCC</text>
+<path d="M1010,346 L826,346" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="826" cy="346" r="3.2" fill="#d62728"/>
+<text x="1018" y="365" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">GND</text>
+<path d="M1010,362 L842,362" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="842" cy="362" r="3.2" fill="#111111"/>
+<text x="1018" y="381" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SCL</text>
+<path d="M1010,378 L858,378" stroke="#c8a000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="858" cy="378" r="3.2" fill="#c8a000"/>
+<text x="1018" y="397" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SDA</text>
+<path d="M1010,394 L874,394" stroke="#1f77b4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="874" cy="394" r="3.2" fill="#1f77b4"/>
+<text x="1018" y="413" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">DC</text>
+<path d="M1010,410 L890,410" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="890" cy="410" r="3.2" fill="#2ca02c"/>
+<text x="1018" y="429" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">RST</text>
+<path d="M1010,426 L906,426" stroke="#9467bd" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="906" cy="426" r="3.2" fill="#9467bd"/>
+<text x="1018" y="445" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">CS</text>
+<path d="M1010,442 L946,442" stroke="#17becf" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="946" cy="442" r="3.2" fill="#17becf"/>
+<text x="1254" y="445" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#17becf">CS → D5</text>
+<rect x="1010" y="490" width="250" height="150" rx="6" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="1135.0" y="505" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">LOWER-RIGHT screen</text>
+<text x="1135.0" y="520" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#666">Hosyond 1.28" GC9A01, 7-pin</text>
+<text x="1018" y="539" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">VCC</text>
+<path d="M1010,536 L826,536" stroke="#d62728" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="826" cy="536" r="3.2" fill="#d62728"/>
+<text x="1018" y="555" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">GND</text>
+<path d="M1010,552 L842,552" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="842" cy="552" r="3.2" fill="#111111"/>
+<text x="1018" y="571" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SCL</text>
+<path d="M1010,568 L858,568" stroke="#c8a000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="858" cy="568" r="3.2" fill="#c8a000"/>
+<text x="1018" y="587" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">SDA</text>
+<path d="M1010,584 L874,584" stroke="#1f77b4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="874" cy="584" r="3.2" fill="#1f77b4"/>
+<text x="1018" y="603" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">DC</text>
+<path d="M1010,600 L890,600" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="890" cy="600" r="3.2" fill="#2ca02c"/>
+<text x="1018" y="619" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">RST</text>
+<path d="M1010,616 L906,616" stroke="#9467bd" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="906" cy="616" r="3.2" fill="#9467bd"/>
+<text x="1018" y="635" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">CS</text>
+<path d="M1010,632 L962,632" stroke="#8c564b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="962" cy="632" r="3.2" fill="#8c564b"/>
+<text x="1254" y="635" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#8c564b">CS → D22</text>
+<path d="M826,156 L826,632" stroke="#d62728" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M842,156 L842,632" stroke="#111111" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M858,156 L858,632" stroke="#c8a000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M874,156 L874,632" stroke="#1f77b4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M890,156 L890,632" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M906,156 L906,632" stroke="#9467bd" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M930,156 L930,252" stroke="#ff7f0e" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M946,346 L946,442" stroke="#17becf" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M962,536 L962,632" stroke="#8c564b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M784,358 L858,358" stroke="#c8a000" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="858" cy="358" r="3.2" fill="#c8a000"/>
+<text x="790" y="354" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#c8a000">SCL (clock)</text>
+<path d="M784,130 L874,130" stroke="#1f77b4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="874" cy="130" r="3.2" fill="#1f77b4"/>
+<text x="790" y="126" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#1f77b4">SDA (data)</text>
+<path d="M784,434 L890,434" stroke="#2ca02c" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="890" cy="434" r="3.2" fill="#2ca02c"/>
+<text x="790" y="430" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#2ca02c">DC</text>
+<path d="M784,472 L906,472" stroke="#9467bd" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="906" cy="472" r="3.2" fill="#9467bd"/>
+<text x="790" y="468" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#9467bd">RST</text>
+<path d="M784,282 L930,282" stroke="#ff7f0e" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="930" cy="282" r="3.2" fill="#ff7f0e"/>
+<text x="790" y="278" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#ff7f0e">CS top</text>
+<path d="M784,396 L946,396" stroke="#17becf" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="946" cy="396" r="3.2" fill="#17becf"/>
+<text x="790" y="392" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#17becf">CS lower-left</text>
+<path d="M784,168 L962,168" stroke="#8c564b" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="962" cy="168" r="3.2" fill="#8c564b"/>
+<text x="790" y="164" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#8c564b">CS lower-right</text>
+<path d="M784,624 L842,624" stroke="#111111" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="842" cy="624" r="3.2" fill="#111111"/>
+<text x="790" y="620" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#111111">GND</text>
+<path d="M804,662 L826,662" stroke="#d62728" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="826" cy="662" r="3.2" fill="#d62728"/>
+<text x="790" y="658" font-size="8.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#d62728">3V3 (displays run on 3.3 V, not VIN)</text>
+<path d="M826,632 L826,662" stroke="#d62728" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M842,632 L842,624" stroke="#111111" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1010" y="680" font-size="9.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#444">All three displays share 3V3, GND, SCL, SDA, DC and RST.</text>
+<text x="1010" y="694" font-size="9.5" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#444">Only CS is separate — that is how the code picks a screen.</text>
+<text x="1010" y="712" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#666">Optional: 100 nF ceramic across VCC/GND at each display.</text>
+<text x="1010" y="730" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#b00">⚠ Replace the in-plane right-angle header with a straight</text>
+<text x="1010" y="742" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#b00">header on the back, or solder wires — see CASE_NOTES.</text>
+<rect x="520" y="800" width="280" height="46" rx="8" fill="#f4f4f8" stroke="#333" stroke-width="1.5"/>
+<text x="660" y="818" font-size="11" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="bold" fill="#222">Panel-mount USB-C (back wall)</text>
+<text x="660" y="834" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" font-weight="normal" fill="#555">0.3 m cable inside the case → ESP32 USB-C port. Powers everything.</text>
+<path d="M660,698 L660,800" stroke="#666" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4,4"/>
+<rect x="20" y="810" width="470" height="70" rx="8" fill="#fffbe6" stroke="#c9a400" stroke-width="1.5"/>
+<text x="30" y="828" font-size="11" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">Notes</text>
+<text x="30" y="843" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">• KY-040 '+' goes to 3V3, never 5 V. Its board has pull-ups on CLK/DT; SW uses INPUT_PULLUP.</text>
+<text x="30" y="856" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">• GPIO 34/35/36/39 are input-only (fine for LDR and encoder CLK/DT). D15 is a strapping pin — harmless for a toggle.</text>
+<text x="30" y="869" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">• ↑ / ↓ = wire routed over / under the board from a right-side pin. Every safe GPIO is now used. Match wires by the printed label.</text>
+<path d="M20,40 L42,40" stroke="#d62728" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="47" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">3V3</text>
+<path d="M92,40 L114,40" stroke="#111111" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="119" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">GND</text>
+<path d="M164,40 L186,40" stroke="#c8a000" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="191" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">SCL</text>
+<path d="M236,40 L258,40" stroke="#1f77b4" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="263" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">SDA</text>
+<path d="M308,40 L330,40" stroke="#2ca02c" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="335" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">DC</text>
+<path d="M380,40 L402,40" stroke="#9467bd" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="407" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">RST</text>
+<path d="M452,40 L474,40" stroke="#ff7f0e" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="479" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">CS top</text>
+<path d="M524,40 L546,40" stroke="#17becf" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="551" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">CS LL</text>
+<path d="M596,40 L618,40" stroke="#8c564b" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="623" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">CS LR</text>
+<path d="M668,40 L690,40" stroke="#4a5a8a" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="695" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">toggles</text>
+<path d="M740,40 L762,40" stroke="#0b7a5b" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="767" y="44" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="normal" fill="#222">encoders</text>
+<text x="20" y="22" font-size="15" font-family="Helvetica, Arial, sans-serif" text-anchor="start" font-weight="bold" fill="#222">ISS MONITOR — wiring (triangle console: 3 screens, 6 toggles, 2 encoders, LED, LDR)</text>
+<text x="1320" y="22" font-size="9" font-family="Helvetica, Arial, sans-serif" text-anchor="end" font-weight="normal" fill="#666">junction dots = connected; crossings without a dot are not</text></svg>
