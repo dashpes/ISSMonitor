@@ -28,6 +28,13 @@ void cycleMode(AppState& s, int screen, int delta) {
     Serial.printf("%s mode -> %d/%d\n", screenName(screen), m + 1, n);
 }
 
+// A panel switch owns this value; the console can only look at it.
+void reportOwned(const AppState& s, const char* label, bool value) {
+    (void)s;
+    Serial.printf("%s is %s -- flip the panel toggle, the console cannot "
+                  "override a wired switch\n", label, value ? "ON" : "OFF");
+}
+
 void printState(const AppState& s) {
     Serial.println("---- state ----");
     Serial.printf("modes   : L=%u  globe=%u  R=%u\n",
@@ -69,14 +76,14 @@ void poll(AppState& s) {
             case '3': cycleMode(s, SCR_SKY,       -1); break;
             case '4': cycleMode(s, SCR_SKY,       +1); break;
 
-            case 'n': s.sw.night = !s.sw.night;
-                      Serial.printf("night  = %d\n", s.sw.night); break;
-            case 'u': s.sw.units_imperial = !s.sw.units_imperial;
-                      Serial.printf("units  = %s\n", s.sw.units_imperial ? "mi" : "km"); break;
-            case 'a': s.sw.alert_armed = !s.sw.alert_armed;
-                      Serial.printf("alert  = %d\n", s.sw.alert_armed); break;
-            case 't': s.sw.track_trail = !s.sw.track_trail;
-                      Serial.printf("track  = %d\n", s.sw.track_trail); break;
+            // These four are owned by the panel toggles. inputs::poll()
+            // commits them from the pins every 5 ms, so writing them here
+            // would be overwritten before the next frame -- two writers to
+            // one field, and the hardware wins. Report instead of pretending.
+            case 'n': reportOwned(s, "NIGHT", s.sw.night); break;
+            case 'u': reportOwned(s, "UNITS", s.sw.units_imperial); break;
+            case 'a': reportOwned(s, "ALERT", s.sw.alert_armed); break;
+            case 't': reportOwned(s, "TRACK", s.sw.track_trail); break;
             case 'd': s.dim = !s.dim;
                       Serial.printf("dim    = %d\n", s.dim); break;
 

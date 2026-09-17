@@ -12,10 +12,8 @@
 //
 //   1 / 2   left knob  CCW / CW   (cycle the left screen's mode)
 //   3 / 4   right knob CCW / CW   (cycle the right screen's mode)
-//   n       toggle night palette   (stands in for SW1 and for the LDR)
-//   u       toggle units
-//   a       toggle alert arm
-//   t       toggle track trail
+//   n u a t report NIGHT/UNITS/ALERT/TRACK (read-only: the panel toggles
+//           own those, inputs::poll commits them from the pins every 5 ms)
 //   d       toggle forced dim      (stands in for the LDR)
 //   j       jump time forward 60 s (fast-forward to the next pass)
 //   ?       print state
