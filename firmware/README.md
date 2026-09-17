@@ -69,7 +69,27 @@ Two bugs found and fixed during bring-up, both in `include/display_config.h`:
   **7-pin displays with no BLK** — confirm by counting pins on a module.
 - LovyanGFX and Sgp4 are vendored in `lib/` (the registry was crawling).
 
-**Next:** `pio run -e data -t upload -t monitor` for the first real ISS fix.
+**2026-09-17 — console is live.** All three screens running against real
+Celestrak data. Left telemetry, centre globe, right pass prediction.
+
+Fixed during bring-up:
+- Shared RST was owned per-panel, so `init()` on one reset the others.
+- CS floats until a panel's `init()` configures it, so the first draw landed
+  on all three screens. `prepareDisplayBus()` handles both.
+- `Sgp4::init()` returns false both for a bad element set *and* for one it
+  already holds. An unchanged refresh read as a failure and switched tracking
+  off. `propagator::load()` now tracks the loaded line1 itself.
+
+### Open
+
+| Item | Notes |
+|---|---|
+| **Globe layout** | Needs work. Graticule only, no coastlines — that needs a generated polyline table in PROGMEM. |
+| Encoder ISR | `src/io/inputs.cpp` Part B. Blocked on the KY-040s. Set `HAVE_ENCODER=1` when wired. |
+| Light sensor | `src/io/lightsensor.cpp`. Blocked on the GL5539. Set `HAVE_LDR=1`. |
+| AUX switches | `HAVE_AUX_SWITCHES=1` once D14/D15 are wired. |
+| Confirm displays are 7-pin | The two-encoder pin map spends D4 on Encoder R. An 8th BLK pin means a conflict. |
+| Register-based switch scan | `digitalRead` x4 → one 32-bit GPIO register read + bitmasks. |
 
 ## Parts on hand (Sept 2026)
 

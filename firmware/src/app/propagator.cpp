@@ -15,6 +15,13 @@ namespace {
 Sgp4 g_sat;
 bool g_ready = false;
 
+// Our own copy of the element set currently loaded. Sgp4::init() returns
+// false for TWO different reasons -- a genuinely bad TLE, and "this is the
+// same set you already gave me" -- and the caller cannot tell them apart.
+// Tracking it here means an unchanged refresh is a no-op instead of looking
+// like a failure and switching tracking off.
+char g_loaded_line1[70] = {0};
+
 const orbit::GeoPoint kObserver{cfg::OBS_LAT_DEG, cfg::OBS_LON_DEG,
                                 cfg::OBS_ALT_M / 1000.0};
 
@@ -54,6 +61,13 @@ bool ready() { return g_ready; }
 bool load(const orbit::Tle& tle) {
     if (!tle.valid) return false;
 
+    // Same element set we are already propagating: nothing to do, and calling
+    // init() again would return false and look like an error.
+    if (g_ready && std::strcmp(g_loaded_line1, tle.line1) == 0) {
+        Serial.println("[prop] element set unchanged, keeping current fit");
+        return true;
+    }
+
     // Sgp4::init takes NON-const char[130] and writes into them, so it needs
     // its own mutable copies. Handing it tle.line1 directly would not compile,
     // and casting the const away would let a library scribble on our cache.
@@ -63,11 +77,21 @@ bool load(const orbit::Tle& tle) {
     std::strncpy(l2, tle.line2, sizeof(l2) - 1);
 
     g_sat.site(cfg::OBS_LAT_DEG, cfg::OBS_LON_DEG, cfg::OBS_ALT_M);
-    g_ready = g_sat.init(tle.name, l1, l2);
 
-    Serial.printf("[prop] load %s -> %s (%.4f rev/day)\n",
-                  tle.name, g_ready ? "ok" : "FAILED", g_sat.revpday);
-    return g_ready;
+    if (!g_sat.init(tle.name, l1, l2)) {
+        // A bad refresh must not take down a propagator that was working.
+        // Whatever we were already tracking keeps running.
+        Serial.printf("[prop] load %s REJECTED; keeping previous fit (ready=%d)\n",
+                      tle.name, g_ready);
+        return g_ready;
+    }
+
+    std::strncpy(g_loaded_line1, tle.line1, sizeof(g_loaded_line1) - 1);
+    g_loaded_line1[sizeof(g_loaded_line1) - 1] = '\0';
+    g_ready = true;
+
+    Serial.printf("[prop] load %s -> ok (%.4f rev/day)\n", tle.name, g_sat.revpday);
+    return true;
 }
 
 void update(AppState& s) {
