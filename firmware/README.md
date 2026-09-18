@@ -10,9 +10,10 @@ ESP32 + 3x GC9A01 round displays. See `../PARTS_LIST.md` for the hardware and
 brew install platformio          # or: pipx install platformio
 cd firmware
 cp src/secrets_example.h src/secrets.h   # fill in Wi-Fi
-pio test -e native               # runs on the Mac, no hardware. 15 tests, all red.
+pio test -e native               # runs on the Mac, no hardware. 64 tests, green.
 pio run                          # compiles for the ESP32
 pio run -t upload -t monitor     # flash + serial
+pio run -e allhw                 # compile-only: the not-yet-wired code too
 ```
 
 ### Running the tests
@@ -25,6 +26,11 @@ pio test -e native          # the PlatformIO way; same tests, needs the registry
 `run_tests.sh` compiles the tests with plain `c++` and a vendored copy of
 Unity (`test/unity_vendor/`, 3 files from ThrowTheSwitch/Unity). Sub-second,
 works offline. Run it after every edit.
+
+One suite per directory, one `main()` per suite — that is PlatformIO's
+convention, not a preference. It links every `.cpp` in a test directory into
+a single binary, so two files sharing a folder is two `main()`s and a
+duplicate-symbol error at link time.
 
 `pio test -e native` is the important one. It builds only `lib/orbit`, which
 has no Arduino dependency at all, so the orbital math can be proven correct
@@ -184,32 +190,93 @@ Fixed during bring-up:
   already holds. An unchanged refresh read as a failure and switched tracking
   off. `propagator::load()` now tracks the loaded line1 itself.
 
+**2026-09-17 — pass prediction is ours, and the last two files are written.**
+
+`lib/orbit/src/passes.cpp` was the one module still stubbed out. It is done,
+and `propagator::computePasses()` now calls it instead of `Sgp4::nextpass()`.
+
+- `orbit::findPasses()` — coarse scan, bisect each horizon crossing, ternary
+  search for the peak. **25 new tests.** The `SubpointFn` callback is what
+  makes any of that testable: on the ESP32 it is SGP4, in the tests it is a
+  satellite on a known circle whose look angles have a closed form, so every
+  expected value is geometry rather than a copy of the output.
+- `orbit::subsolarPoint()` / `isVisiblePass()` — the sun, and whether the ISS
+  is lit while you are in the dark. Cylindrical shadow, civil twilight. Tested
+  against the solar system rather than against itself: declination at both
+  solstices, subsolar longitude marching west at 15°/h, the equation of time
+  staying inside four degrees over a year.
+- **Why replace a library call that worked.** `nextpass()` answers two
+  questions with one return value, exactly like the `init()` trap above, and
+  its `lighted` flag is its own idea of visibility with no way to check it.
+
+  Cross-checked before switching, against the real ISS from a live Celestrak
+  element set — the two implementations were run side by side over the same
+  36 hours. They find the **same seven passes**, agree on **max elevation
+  exactly** and on the **moment of maximum to the second**, and on azimuth to
+  within 3° (spherical vs ellipsoidal Earth in `lookAngle`, as documented).
+
+  One deliberate difference: AOS and LOS now mean **crossing 10°**, not
+  crossing the horizon, so the right screen shows shorter passes than before —
+  400 s rather than 650 s for a good one. Ten degrees is what you can actually
+  see over a roofline, and it is what Heavens-Above quotes.
+- Also fixed in passing: `groundDistanceKm()` did not clamp its `asin`
+  argument. Not reachable today — `sqrt` rounds the one-ulp overshoot back
+  down — but it depended on that, and it is called every second.
+
+The two hardware-gated files are written too, and compile, but **cannot be run
+until the parts arrive**:
+
+- `src/io/lightsensor.cpp` — integer EMA (accumulator held pre-scaled, or the
+  average truncates to a stop short of the signal) plus a hysteresis band, so
+  dusk does not flip the palette back and forth on ADC noise.
+- `src/io/inputs.cpp` Part B — quadrature decode in an ISR, four quarter-steps
+  to a detent, impossible transitions scored zero. The buttons stay in `poll()`
+  with the toggles: a detent is an event you cannot miss, a button is a level
+  you sample, and that difference is the whole reason only one of them needs
+  an interrupt.
+- `pio run -e allhw` compiles both with the flags forced on. Code that is
+  never compiled rots; this env is what stops that happening while the KY-040s
+  are in the post.
+
+`./scripts/run_tests.sh` → **64 tests, 0 failures.**
+
 ### Open
 
 | Item | Notes |
 |---|---|
-| Encoder ISR | `src/io/inputs.cpp` Part B. Blocked on the KY-040s. Set `HAVE_ENCODER=1` when wired. |
-| Light sensor | `src/io/lightsensor.cpp`. Blocked on the GL5539. Set `HAVE_LDR=1`. |
+| Verify the encoders on hardware | Code is written and compiles. Set `HAVE_ENCODER=1` when the KY-040s land. If a knob counts backwards, swap CLK/DT in `config.h` — that is a wiring fact and belongs with the wiring facts. |
+| Verify the LDR on hardware | Same. `HAVE_LDR=1`, then calibrate `LDR_NIGHT_THRESHOLD` against a real room — 800 is a guess, and it is the one number here nobody can work out on paper. |
 | AUX switches | `HAVE_AUX_SWITCHES=1` once D14/D15 are wired. |
 | Confirm displays are 7-pin | The two-encoder pin map spends D4 on Encoder R. An 8th BLK pin means a conflict. |
-| Register-based switch scan | `digitalRead` x4 → one 32-bit GPIO register read + bitmasks. |
+| Measure `computePasses()` on the bench | It prints its own elapsed ms. Typically ~1,000 SGP4 calls, because the search stops as soon as all four pass slots are full and only walks the whole 36 h when passes are scarce. |
+| ~~Register-based switch scan~~ | **Dropped.** The arithmetic does not support it: four `digitalRead`s every 5 ms is a few microseconds, so the whole saving is around 0.06% of one core — against a rewrite of the one input path that is already proven on hardware, and two register banks to get right because the switch pins straddle GPIO 31. |
 
 ## Parts on hand (Sept 2026)
 
 Wired-up-able today: **ESP32, 3 GC9A01 screens, toggles, LED, resistors.**
 On order: **GL5539 photoresistor, KY-040 encoder.**
 
-That gates exactly two things — `lightsensor.cpp` (~50 lines) and the ISR half
-of `inputs.cpp` (~60 lines). **110 of 1,900 lines.** Everything else is open.
+Both of those are now **written** — what is missing is not the code, it is the
+chance to run it. `lightsensor.cpp` and the ISR half of `inputs.cpp` compile
+under `pio run -e allhw` and are waiting on a GL5539 and two KY-040s to prove
+themselves against real hardware.
 
 `HAVE_ENCODER=0` and `HAVE_LDR=0` in `platformio.ini` compile the absent
 hardware out, and `src/io/console.h` replaces it with serial keys:
 
 ```
-[ ]     encoder left / right        n   night palette      d   force dim
-ENTER   encoder click               u   units km/mi        j   +60 s (skip to a pass)
-?       dump state                  a   arm alert          t   track trail
+1 / 2   left knob  CCW / CW     n u a t   report NIGHT/UNITS/ALERT/TRACK
+3 / 4   right knob CCW / CW               (read-only -- the panel toggles own
+d       force dim (stands in                those, and inputs::poll commits
+        for the LDR)                       them from the pins every 5 ms)
+j       +60 s (skip to a pass)    J       clear the time offset
+?       dump state
 ```
+
+The four toggle keys report rather than set, on purpose: two writers to one
+field and the hardware wins, so pretending otherwise would just be a lie that
+lasts 5 ms. `d` works the same way round -- it sets `s.dim` while the LDR is
+absent, and goes read-only the moment `HAVE_LDR` is 1 and the sensor owns it.
 
 Flip the flags to 1 when the parts land.
 
@@ -255,32 +322,29 @@ What it catches: swapped red/blue (`rgb_order`), a clipped or off-centre circle
 (`offset_x/offset_y`), two panels lighting at once (shared CS), and brownouts
 (`ESP_RST_BROWNOUT` — that is C1, or the USB cable).
 
-## The order to write things
+## The order it was written
 
-Each step is independently testable. Do not skip ahead — step 6 is miserable
-to debug if step 2 is quietly wrong.
+All of it is written now. The order is kept because it is still the order to
+read it in, and because each step was independently testable — which is what
+made step 8 debuggable at all.
 
-| # | File | What | Lines | Difficulty |
+| # | File | What | Difficulty | |
 |---|---|---|---|---|
-| 1 | `lib/orbit/src/geo.cpp` | coordinate math | ~150 | ●●○○○ |
-| 2 | `lib/orbit/src/tle.cpp` | TLE parse + checksum | ~120 | ●●○○○ |
-| 3 | `src/io/inputs.cpp` | six toggles, debounced | ~90 | ●●○○○ |
-| — | `src/io/inputs.cpp` | encoder ISR (Part B) | ~60 | ⏸ **waiting on the KY-040** |
-| — | `src/io/lightsensor.cpp` | LDR, EMA, hysteresis | ~50 | ⏸ **waiting on the GL5539** |
-| 5 | `src/ui/telemetry_screen.cpp` | left screen | ~250 | ●●●○○ |
-| 6 | `src/net/netclock.cpp` | Wi-Fi + NTP, non-blocking | ~120 | ●●●○○ |
-| 7 | `src/net/tle_fetch.cpp` | HTTPS + NVS cache | ~150 | ●●●○○ |
-| 8 | `lib/orbit/src/passes.cpp` | pass prediction | ~180 | ●●●●● |
-| 9 | `src/ui/sky_screen.cpp` | right screen | ~250 | ●●●○○ |
-| 10 | `src/app/alert.cpp` | LED state machine | ~60 | ●●○○○ |
-| 11 | `src/ui/globe_screen.cpp` | the globe | ~150 | ●●●○○ |
-| 12 | `src/main.cpp` | fill in the TODOs | ~80 | ●●○○○ |
+| 1 | `lib/orbit/src/geo.cpp` | coordinate math | ●●○○○ | ✅ |
+| 2 | `lib/orbit/src/tle.cpp` | TLE parse + checksum | ●●○○○ | ✅ |
+| 3 | `src/io/inputs.cpp` | six toggles, debounced | ●●○○○ | ✅ |
+| 4 | `src/ui/telemetry_screen.cpp` | left screen | ●●●○○ | ✅ |
+| 5 | `src/net/netclock.cpp` | Wi-Fi + NTP, non-blocking | ●●●○○ | ✅ |
+| 6 | `src/net/tle_fetch.cpp` | HTTPS + NVS cache | ●●●○○ | ✅ |
+| 7 | `lib/orbit/src/passes.cpp` | pass prediction | ●●●●● | ✅ |
+| 8 | `src/ui/sky_screen.cpp` | right screen | ●●●○○ | ✅ |
+| 9 | `src/app/alert.cpp` | LED state machine | ●●○○○ | ✅ |
+| 10 | `src/ui/globe_screen.cpp` | the globe | ●●●○○ | ✅ |
+| 11 | `src/main.cpp` | the scheduler | ●●○○○ | ✅ |
+| — | `src/io/inputs.cpp` Part B | encoder ISR | ●●●○○ | ⏸ written, **unrun — waiting on the KY-040** |
+| — | `src/io/lightsensor.cpp` | LDR, EMA, hysteresis | ●●○○○ | ⏸ written, **unrun — waiting on the GL5539** |
 
-Roughly **1,900 lines you write**, on top of ~900 already here.
-
-Steps 1–2 need no hardware at all. Step 3 needs one switch on a breadboard.
-Step 5 needs one screen. You are not blocked on the case, the perfboard, or
-the parts still in transit.
+The last two compile under `pio run -e allhw`. Nothing else is outstanding.
 
 ## Reference
 
@@ -294,10 +358,11 @@ the parts still in transit.
 | `scripts/gen_globe_data.py` | builds both of the above from Natural Earth, and the preview PNG |
 | `src/app/state.h` | the AppState struct — the one real architectural decision |
 | `src/ui/screen.h` | abstract base class, heavily annotated |
-| `test/test_orbit/test_geo.cpp` | 15 tests with independently-generated expected values |
+| `test/test_geo/test_geo.cpp` | 24 tests with independently-generated expected values |
+| `test/test_passes/test_passes.cpp` | 25 tests against a fake satellite on a known circle |
 | `hw_check/smoketest.cpp` | wiring diagnostic |
 | `src/io/console.h/.cpp` | serial stand-in for unwired hardware; also a debug console |
-| `platformio.ini` | two envs, C++17, warnings on |
+| `platformio.ini` | C++17, warnings on. `esp32dev` / `native`, plus `led`, `smoketest`, `inputs`, `data` and `allhw` |
 
 ## House rules
 
