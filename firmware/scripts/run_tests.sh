@@ -10,9 +10,14 @@
 #
 # Each test_*.cpp has its own main(), so they are built as separate binaries.
 #
-# test_orbit/ needs only lib/orbit. test_globe/ also reaches into src/ui for
-# the generated tables -- those are plain constexpr data with no Arduino in
-# them, which is exactly why they can be checked here rather than on hardware.
+# One directory per suite, because that is what `pio test` expects: it links
+# every .cpp in a test directory into one binary, and each of these has its
+# own main().
+#
+# test_geo/, test_tle/ and test_passes/ need only lib/orbit. test_globe/ also
+# reaches into src/ui for the generated tables -- those are plain constexpr
+# data with no Arduino in them, which is exactly why they can be checked here
+# rather than on hardware.
 #
 set -uo pipefail
 cd "$(dirname "$0")/.."
