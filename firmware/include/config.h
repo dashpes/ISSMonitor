@@ -101,12 +101,32 @@ constexpr char NTP_2[] = "time.nist.gov";
 constexpr uint32_t MS_PROPAGATE   = 1000;              // recompute ISS position
 constexpr uint32_t MS_REDRAW      = 100;               // UI tick
 constexpr uint32_t MS_INPUT_POLL  = 5;                 // switch scan
+constexpr uint32_t MS_LDR_SAMPLE  = 100;               // ADC read + EMA step
 constexpr uint32_t MS_TLE_REFRESH = 6UL * 3600 * 1000; // 6 h
 constexpr uint32_t MS_DEBOUNCE    = 25;
 
 // ---- Behaviour ----
 constexpr double   PASS_MIN_ELEVATION_DEG = 10.0;  // below this, not worth looking
+// How far ahead the pass search looks, and how finely it steps while looking.
+// The step is the one that matters: an ISS pass is about six minutes end to
+// end, so a step longer than that walks straight over whole passes without
+// ever seeing them. 60 s has margin; test_passes.cpp sweeps every phase of
+// the grid to prove it, and also proves that 600 s does miss.
+// Cost is horizon/step calls into SGP4, so 36 h at 60 s is 2,160 of them.
+constexpr int32_t  PASS_SEARCH_HORIZON_S  = 36 * 3600;
+constexpr int32_t  PASS_COARSE_STEP_S     = 60;
 constexpr uint32_t ALERT_LEAD_SECONDS     = 300;   // LED starts 5 min before AOS
 constexpr int      LDR_NIGHT_THRESHOLD    = 800;   // calibrate this on the bench
+// Hysteresis band. Go dim below the threshold, but do not come back out of
+// it until the reading is this much ABOVE the threshold again. Without a gap
+// the two palettes chatter back and forth on ADC noise alone -- the ESP32's
+// converter wanders several counts at rest, never mind a hand passing over
+// the sensor. Roughly 4% of full scale.
+constexpr int      LDR_HYSTERESIS         = 150;
+// Smoothing, as the reciprocal of the EMA's alpha: ema += (raw - ema) / 8.
+// A power of two so the divide is a shift. At MS_LDR_SAMPLE = 100 ms that is
+// a time constant of about 0.8 s: slow enough to ignore someone walking
+// past the lamp, fast enough that turning the lights off feels immediate.
+constexpr int32_t  LDR_EMA_SHIFT          = 3;    // 1/8
 
 }  // namespace cfg

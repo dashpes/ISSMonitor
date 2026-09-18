@@ -14,7 +14,8 @@
 //   3 / 4   right knob CCW / CW   (cycle the right screen's mode)
 //   n u a t report NIGHT/UNITS/ALERT/TRACK (read-only: the panel toggles
 //           own those, inputs::poll commits them from the pins every 5 ms)
-//   d       toggle forced dim      (stands in for the LDR)
+//   d       toggle forced dim      (stands in for the LDR; becomes read-only
+//                                  once HAVE_LDR is 1 and the sensor owns it)
 //   j       jump time forward 60 s (fast-forward to the next pass)
 //   ?       print state
 //

@@ -42,6 +42,8 @@ void printState(const AppState& s) {
                   (unsigned)s.mode[SCR_SKY]);
     Serial.printf("switches: night=%d units=%d alert=%d track=%d\n",
                   s.sw.night, s.sw.units_imperial, s.sw.alert_armed, s.sw.track_trail);
+    Serial.printf("light   : dim=%d ldr=%u (%s)\n", s.dim, (unsigned)s.ldr_raw,
+                  cfg::kHaveLdr ? "sensor" : "console 'd'");
     Serial.printf("iss     : %.3f, %.3f  alt %.1f km  %.0f km/h\n",
                   s.iss.lat_deg, s.iss.lon_deg, s.iss.alt_km, s.speed_kmh);
     Serial.printf("look    : az %.1f el %.1f range %.0f km\n",
@@ -84,8 +86,23 @@ void poll(AppState& s) {
             case 'u': reportOwned(s, "UNITS", s.sw.units_imperial); break;
             case 'a': reportOwned(s, "ALERT", s.sw.alert_armed); break;
             case 't': reportOwned(s, "TRACK", s.sw.track_trail); break;
-            case 'd': s.dim = !s.dim;
-                      Serial.printf("dim    = %d\n", s.dim); break;
+            // 'd' is only ours while the LDR is absent. Once the sensor is
+            // wired, lightsensor::poll() commits s.dim from the ADC every
+            // 100 ms and anything written here is gone before the next
+            // frame -- the same two-writers-one-field trap as the four
+            // toggles above, which is why it gets the same treatment rather
+            // than a special case.
+            case 'd':
+                if (cfg::kHaveLdr) {
+                    Serial.printf("dim is %s -- the LDR owns it now (raw %u, "
+                                  "threshold %d). Cover the sensor.\n",
+                                  s.dim ? "ON" : "OFF", (unsigned)s.ldr_raw,
+                                  cfg::LDR_NIGHT_THRESHOLD);
+                } else {
+                    s.dim = !s.dim;
+                    Serial.printf("dim    = %d\n", s.dim);
+                }
+                break;
 
             case 'j': g_time_offset_s += 60;
                       Serial.printf("time offset = %+d s\n", (int)g_time_offset_s); break;

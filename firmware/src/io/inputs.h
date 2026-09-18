@@ -19,8 +19,14 @@ namespace inputs {
 
 void begin();
 
-// Call every cfg::MS_INPUT_POLL from loop(). Debounces the toggles and folds
-// encoder movement into `s`. Never blocks.
+// Call every cfg::MS_INPUT_POLL from loop(). Debounces the toggles and the
+// encoders' push switches, and commits the toggle states into `s`. Never
+// blocks.
+//
+// Rotation does NOT come through here: the ISR has already counted it, and
+// main.cpp collects it with takeEncoderDelta() below, because what a turn
+// MEANS depends on which screen the knob belongs to and this file has no
+// business knowing that.
 void poll(AppState& s);
 
 // Detents since the last call, then cleared. Negative = counter-clockwise.
