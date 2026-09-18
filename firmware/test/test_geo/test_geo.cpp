@@ -65,6 +65,37 @@ void test_distance_degenerate(void) {
     assertClose(20015.114, groundDistanceKm({0, 0, 0}, {0, 180, 0}), 0.10);
 }
 
+// Antipodes are the degenerate case for the haversine: the quantity under the
+// square root lands on exactly 1, where asin's slope is infinite and half the
+// mantissa goes with it. The first pair below is chosen, not decorative --
+// round latitudes land on exactly 1 and come out clean, while that one
+// overshoots it by one ulp, as about one antipodal pair in twenty-five does.
+//
+// Note what this does NOT prove. It passes with or without the clamp in
+// groundDistanceKm, because sqrt of 1 + one ulp rounds back to 1.0 on the way
+// past. The clamp is insurance against two ulps on some other libm; this test
+// is here for the thing that is actually checkable, which is that opposite
+// sides of the planet come back as half a circumference and a real number.
+void test_distance_antipodal(void) {
+    constexpr double kHalfWay = 20015.114;   // pi * R
+
+    const double d = groundDistanceKm({-66.71876003663684, -90.85865986911085, 0.0},
+                                      { 66.71876003663684,  89.14134013088915, 0.0});
+    TEST_ASSERT_TRUE_MESSAGE(std::isfinite(d), "antipodal distance is not finite");
+    assertClose(kHalfWay, d, 0.01);
+
+    // And a sweep on deliberately unround numbers, for the same reason.
+    for (double lat = -89.3; lat <= 89.3; lat += 3.7) {
+        for (double lon = -179.1; lon < 180.0; lon += 11.3) {
+            const GeoPoint a{lat, lon, 0.0};
+            const GeoPoint b{-lat, wrapLongitude(lon + 180.0), 0.0};
+            const double dd = groundDistanceKm(a, b);
+            TEST_ASSERT_TRUE_MESSAGE(std::isfinite(dd), "antipodal distance is not finite");
+            assertClose(kHalfWay, dd, 0.01);
+        }
+    }
+}
+
 void test_distance_is_symmetric(void) {
     GeoPoint a{33.746, -117.826, 0.0};
     GeoPoint b{40.7128, -74.0060, 0.0};
@@ -337,6 +368,7 @@ int main(int, char**) {
     RUN_TEST(test_distance_same_point);
     RUN_TEST(test_distance_known_pairs);
     RUN_TEST(test_distance_degenerate);
+    RUN_TEST(test_distance_antipodal);
     RUN_TEST(test_distance_is_symmetric);
     RUN_TEST(test_look_directly_overhead);
     RUN_TEST(test_look_due_north);
