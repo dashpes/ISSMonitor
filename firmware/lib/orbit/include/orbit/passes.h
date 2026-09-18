@@ -45,6 +45,18 @@ int findPasses(SubpointFn subpoint, void* ctx,
                Pass*   out,
                int     max_passes);
 
+// Where on Earth the sun is directly overhead, right now. Public rather than
+// a private helper inside the .cpp because it is the one piece of this file
+// that can be checked against something outside the project: the declination
+// is +23.44 at the June solstice and the subsolar longitude marches west at
+// 15 degrees an hour, and no amount of plausible-looking code can talk its
+// way out of those.
+GeoPoint subsolarPoint(int64_t unix_time);
+
+// How high the sun is at a point on the ground, degrees. Negative is below
+// the horizon; below about -6 the sky is dark enough to spot the ISS.
+double sunElevationDeg(const GeoPoint& observer, int64_t unix_time);
+
 // Is the ISS in sunlight while the observer is in darkness? That combination
 // is what makes it actually visible. Cheap solar position is good enough --
 // you need the sun's declination to about a degree, not an arcsecond.
