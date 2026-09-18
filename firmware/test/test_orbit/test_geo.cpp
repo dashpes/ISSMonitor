@@ -164,6 +164,169 @@ void test_compass(void) {
 }
 
 // --------------------------------------------------------------------------
+// OrthoView -- the fast path the globe actually draws with
+// --------------------------------------------------------------------------
+void test_unit_vector_known_directions(void) {
+    const UnitVec origin = toUnitVector({0.0, 0.0, 0.0});
+    assertClose(1.0, origin.x, 1e-6);
+    assertClose(0.0, origin.y, 1e-6);
+    assertClose(0.0, origin.z, 1e-6);
+
+    const UnitVec east = toUnitVector({0.0, 90.0, 0.0});
+    assertClose(0.0, east.x, 1e-6);
+    assertClose(1.0, east.y, 1e-6);
+    assertClose(0.0, east.z, 1e-6);
+
+    const UnitVec pole = toUnitVector({90.0, 0.0, 0.0});
+    assertClose(0.0, pole.x, 1e-6);
+    assertClose(0.0, pole.y, 1e-6);
+    assertClose(1.0, pole.z, 1e-6);
+
+    // Altitude must not change a direction, whatever the ISS is doing.
+    const UnitVec high = toUnitVector({33.746, -117.826, 420.0});
+    const UnitVec low  = toUnitVector({33.746, -117.826, 0.0});
+    assertClose(low.x, high.x, 1e-6);
+    assertClose(low.y, high.y, 1e-6);
+    assertClose(low.z, high.z, 1e-6);
+}
+
+void test_unit_vectors_are_unit_length(void) {
+    for (double lat = -90.0; lat <= 90.0; lat += 15.0) {
+        for (double lon = -180.0; lon <= 180.0; lon += 15.0) {
+            const UnitVec v = toUnitVector({lat, lon, 0.0});
+            const double len = std::sqrt(double(v.x) * v.x +
+                                         double(v.y) * v.y +
+                                         double(v.z) * v.z);
+            assertClose(1.0, len, 1e-6);
+        }
+    }
+}
+
+void test_ortho_view_center_and_far_side(void) {
+    const GeoPoint center{33.746, -117.826, 0.0};
+    const OrthoView view = makeOrthoView(center, 120, 120, 104);
+
+    // Looking straight down the middle: dead centre of the disc.
+    const ScreenPoint mid = projectUnit(view, toUnitVector(center));
+    TEST_ASSERT_TRUE(mid.visible);
+    TEST_ASSERT_EQUAL_INT(120, mid.x);
+    TEST_ASSERT_EQUAL_INT(120, mid.y);
+
+    // The antipode is around the back and must be culled.
+    const GeoPoint anti{-center.lat_deg, center.lon_deg + 180.0, 0.0};
+    TEST_ASSERT_FALSE(projectUnit(view, toUnitVector(anti)).visible);
+}
+
+// The whole reason projectUnit() exists is speed, so the thing worth testing
+// is that it did not buy that speed with a different answer. Sweep view
+// centres and points across the sphere and hold the two implementations
+// against each other.
+void test_ortho_view_matches_projection(void) {
+    for (double lat0 = -80.0; lat0 <= 80.0; lat0 += 40.0) {
+        for (double lon0 = -180.0; lon0 < 180.0; lon0 += 45.0) {
+            const GeoPoint center{lat0, lon0, 0.0};
+            const OrthoView view = makeOrthoView(center, 120, 120, 104);
+
+            for (double lat = -90.0; lat <= 90.0; lat += 10.0) {
+                for (double lon = -180.0; lon < 180.0; lon += 10.0) {
+                    const GeoPoint p{lat, lon, 0.0};
+                    const ScreenPoint slow =
+                        projectOrthographic(p, center, 120, 120, 104);
+                    const ScreenPoint fast = projectUnit(view, toUnitVector(p));
+
+                    // Single precision costs at most a pixel of rounding.
+                    TEST_ASSERT_INT_WITHIN(1, slow.x, fast.x);
+                    TEST_ASSERT_INT_WITHIN(1, slow.y, fast.y);
+
+                    // Visibility must agree except within a hair of the limb,
+                    // where cos_c is ~0 and either sign is defensible.
+                    const double dx = slow.x - 120.0;
+                    const double dy = slow.y - 120.0;
+                    const bool near_limb = std::fabs(std::sqrt(dx * dx + dy * dy) - 104.0) < 1.0;
+                    if (!near_limb) {
+                        TEST_ASSERT_EQUAL_INT(slow.visible ? 1 : 0,
+                                              fast.visible ? 1 : 0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// unprojectUnit -- the fill path, which runs the projection backwards
+// --------------------------------------------------------------------------
+void test_unproject_off_disc(void) {
+    const OrthoView view = makeOrthoView({0.0, 0.0, 0.0}, 120, 120, 104);
+
+    // Corners of a 240x240 screen are well outside a 104 px disc.
+    TEST_ASSERT_FALSE(unprojectUnit(view, 0, 0).on_globe);
+    TEST_ASSERT_FALSE(unprojectUnit(view, 239, 239).on_globe);
+    // Just outside the limb, and just inside it.
+    TEST_ASSERT_FALSE(unprojectUnit(view, 120 + 105, 120).on_globe);
+    TEST_ASSERT_TRUE(unprojectUnit(view, 120 + 103, 120).on_globe);
+}
+
+void test_unproject_centre_is_view_axis(void) {
+    const GeoPoint centre{33.746, -117.826, 0.0};
+    const OrthoView view = makeOrthoView(centre, 120, 120, 104);
+
+    // The middle of the disc looks straight down the view axis, so it must
+    // come back as the direction to the view centre itself.
+    const SpherePoint mid = unprojectUnit(view, 120, 120);
+    TEST_ASSERT_TRUE(mid.on_globe);
+    const UnitVec want = toUnitVector(centre);
+    assertClose(want.x, mid.dir.x, 1e-5);
+    assertClose(want.y, mid.dir.y, 1e-5);
+    assertClose(want.z, mid.dir.z, 1e-5);
+}
+
+void test_unproject_results_are_unit_length(void) {
+    const OrthoView view = makeOrthoView({10.0, 25.0, 0.0}, 120, 120, 104);
+    for (int y = 16; y <= 224; ++y) {
+        for (int x = 16; x <= 224; ++x) {
+            const SpherePoint p = unprojectUnit(view, x, y);
+            if (!p.on_globe) continue;
+            const double len = std::sqrt(double(p.dir.x) * p.dir.x +
+                                         double(p.dir.y) * p.dir.y +
+                                         double(p.dir.z) * p.dir.z);
+            assertClose(1.0, len, 1e-5);
+        }
+    }
+}
+
+// The real contract: unproject a pixel, project the answer, get the pixel
+// back. Sweep whole discs, because a sign error in one of the three rows
+// still round-trips along the axes and only shows up off-centre.
+void test_unproject_round_trips(void) {
+    for (double lat0 = -60.0; lat0 <= 60.0; lat0 += 30.0) {
+        for (double lon0 = -150.0; lon0 <= 150.0; lon0 += 75.0) {
+            const OrthoView view = makeOrthoView({lat0, lon0, 0.0}, 120, 120, 104);
+            for (int y = 16; y <= 224; ++y) {
+                for (int x = 16; x <= 224; ++x) {
+                    const SpherePoint p = unprojectUnit(view, x, y);
+                    if (!p.on_globe) continue;
+
+                    // Exactly on the limb the round trip lands on u == 0,
+                    // where a half-ULP decides the sign of `visible`. That is
+                    // inherent, not a bug, so the outermost ring is excluded
+                    // rather than asserted either way.
+                    const double dx = x - 120.0, dy = y - 120.0;
+                    if (std::sqrt(dx * dx + dy * dy) > 103.0) continue;
+
+                    const ScreenPoint back = projectUnit(view, p.dir);
+                    TEST_ASSERT_TRUE(back.visible);
+                    // Near the limb a whole pixel of screen spans a large
+                    // angle, so allow one pixel of rounding either way.
+                    TEST_ASSERT_INT_WITHIN(1, x, back.x);
+                    TEST_ASSERT_INT_WITHIN(1, y, back.y);
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
 void setUp(void) {}
 void tearDown(void) {}
 
@@ -183,6 +346,14 @@ int main(int, char**) {
     RUN_TEST(test_projection_north_pole);
     RUN_TEST(test_projection_far_side_hidden);
     RUN_TEST(test_projection_east_limb);
+    RUN_TEST(test_unit_vector_known_directions);
+    RUN_TEST(test_unit_vectors_are_unit_length);
+    RUN_TEST(test_ortho_view_center_and_far_side);
+    RUN_TEST(test_ortho_view_matches_projection);
+    RUN_TEST(test_unproject_off_disc);
+    RUN_TEST(test_unproject_centre_is_view_axis);
+    RUN_TEST(test_unproject_results_are_unit_length);
+    RUN_TEST(test_unproject_round_trips);
     RUN_TEST(test_compass);
     return UNITY_END();
 }

@@ -23,7 +23,8 @@ struct Palette {
     uint16_t warn;      // pass imminent
     uint16_t grid;      // globe graticule, dial ticks
     uint16_t ocean;
-    uint16_t land;
+    uint16_t land;       // the coastline stroke
+    uint16_t land_fill;  // the interior; darker, so the coast still reads
 };
 
 constexpr Palette kDayPalette{
@@ -35,6 +36,7 @@ constexpr Palette kDayPalette{
     /* grid   */ rgb565( 30,  48,  64),
     /* ocean  */ rgb565( 10,  34,  58),
     /* land   */ rgb565( 40, 110,  80),
+    /* fill   */ rgb565( 16,  60,  40),
 };
 
 constexpr Palette kNightPalette{
@@ -46,6 +48,7 @@ constexpr Palette kNightPalette{
     /* grid   */ rgb565( 45,   6,   4),
     /* ocean  */ rgb565( 20,   2,   2),
     /* land   */ rgb565( 70,  10,   8),
+    /* fill   */ rgb565( 40,   6,   4),
 };
 
 inline const Palette& palette(bool night) {

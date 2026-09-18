@@ -23,11 +23,21 @@
 #define HAVE_AUX_SWITCHES 1
 #endif
 
+// ---- Profiling ----
+// Off by default. Turn on for one build without editing anything:
+//   PLATFORMIO_BUILD_FLAGS=-DGLOBE_PROFILE=1 pio run -t upload -t monitor
+// The globe is the only screen that redraws all 240x240 every tick, so it is
+// the only one whose frame cost is worth instrumenting.
+#ifndef GLOBE_PROFILE
+#define GLOBE_PROFILE 0
+#endif
+
 namespace cfg {
 
 constexpr bool kHaveEncoder = HAVE_ENCODER;
 constexpr bool kHaveLdr     = HAVE_LDR;
 constexpr bool kHaveAuxSwitches = HAVE_AUX_SWITCHES;
+constexpr bool kGlobeProfile    = GLOBE_PROFILE;
 
 // ---- Shared SPI bus (all three GC9A01 displays) ----
 constexpr uint8_t PIN_SCK  = 18;  // "SCL" on the module

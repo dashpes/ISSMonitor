@@ -3,6 +3,10 @@ firmware/.pio/
 *.bin
 *.elf
 
+# Downloaded Natural Earth GeoJSON. A cache, not a source -- the generated
+# header IS checked in, so a clone builds without touching the network.
+.cache/
+
 # Vendored third-party libraries -- cloned, not authored here.
 # Restore with scripts/vendor_libs.sh
 firmware/lib/LovyanGFX/

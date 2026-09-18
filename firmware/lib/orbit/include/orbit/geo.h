@@ -66,6 +66,70 @@ ScreenPoint projectOrthographic(const GeoPoint& p,
                                 const GeoPoint& view_center,
                                 int cx, int cy, int radius_px);
 
+// --- The same projection, arranged for drawing thousands of points ---------
+//
+// projectOrthographic() takes a lat/lon, so it must compute four sines and
+// cosines for every single point. That is fine for the ISS marker. It is not
+// fine for the coastline: `double` trig on an ESP32 is *software* -- the FPU
+// is single-precision only -- and the globe draws roughly 2,000 vertices per
+// frame inside a 100 ms budget that also has three SPI panel pushes in it.
+//
+// So the work is split. The trig that depends only on where the camera is
+// happens once per frame, in makeOrthoView(). The trig that depends only on
+// where a vertex is happens once ever, at build time -- src/ui/globe_data.h
+// ships its vertices as unit vectors already. What is left in the inner loop
+// is nine multiplies and no trig at all.
+
+// A direction from the centre of the Earth: a point on the unit sphere in
+// Earth-centred, Earth-fixed axes. Single-precision on purpose -- the ESP32
+// has hardware float, and 240 px of screen does not need more.
+struct UnitVec {
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+};
+
+// An orthographic projection with the view rotation already worked out.
+// The three rows are the observer's own axes written in ECEF: east and north
+// span the visible disc, up says which hemisphere a point is on.
+struct OrthoView {
+    UnitVec east{};
+    UnitVec north{};
+    UnitVec up{};
+    int cx = 0;
+    int cy = 0;
+    int radius_px = 0;
+    // 1/radius_px, precomputed. The Xtensa FPU has no divide instruction --
+    // a float division compiles to a call to __divsf3 -- and unprojectUnit()
+    // runs once per pixel of the disc, so this must not be computed there.
+    float inv_radius = 0.0f;
+};
+
+// Direction to a lat/lon. Altitude is ignored -- this is a bearing, not a
+// position, and the globe draws everything onto the same sphere.
+UnitVec toUnitVector(const GeoPoint& p);
+
+// Build the per-frame rotation. Six trig calls; call it once, not per vertex.
+OrthoView makeOrthoView(const GeoPoint& view_center, int cx, int cy, int radius_px);
+
+// Project a point that is already on the unit sphere. Agrees with
+// projectOrthographic() to well under a pixel; see test_geo.cpp.
+ScreenPoint projectUnit(const OrthoView& view, const UnitVec& p);
+
+// What the globe is showing at a given screen pixel. `on_globe` is false
+// outside the disc, where the question has no answer -- that is the whole
+// reason this returns a struct rather than a bare vector.
+struct SpherePoint {
+    UnitVec dir{};
+    bool on_globe = false;
+};
+
+// The inverse of projectUnit: pixel -> direction. Used to FILL, where the
+// question runs the other way round -- not "where does this coastline land on
+// screen" but "what is underneath this pixel". An outline cannot answer that;
+// a closed curve does not say which side of itself is inside.
+SpherePoint unprojectUnit(const OrthoView& view, int x, int y);
+
 // Compass point for a heading: "N", "NNE", "NE", ... 16-point rose.
 // Returns a pointer to a static string literal -- no allocation, safe to
 // hand straight to the display driver.

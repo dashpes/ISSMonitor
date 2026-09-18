@@ -124,6 +124,86 @@ ScreenPoint projectOrthographic(const GeoPoint& p,
     return out;
 }
 
+UnitVec toUnitVector(const GeoPoint& p) {
+    const double lat = deg2rad(p.lat_deg);
+    const double lon = deg2rad(p.lon_deg);
+    const double cos_lat = std::cos(lat);
+    return {static_cast<float>(cos_lat * std::cos(lon)),
+            static_cast<float>(cos_lat * std::sin(lon)),
+            static_cast<float>(std::sin(lat))};
+}
+
+OrthoView makeOrthoView(const GeoPoint& view_center, int cx, int cy, int radius_px) {
+    const double lat0 = deg2rad(view_center.lat_deg);
+    const double lon0 = deg2rad(view_center.lon_deg);
+    const double sin_lat0 = std::sin(lat0), cos_lat0 = std::cos(lat0);
+    const double sin_lon0 = std::sin(lon0), cos_lon0 = std::cos(lon0);
+
+    // This is the same East/North/Up rotation lookAngle() builds by hand.
+    // There it aims a pair of eyes; here it aims a camera at the planet. Worth
+    // noticing that they are the same three rows -- the second time you meet a
+    // change of basis it stops looking like a trick.
+    OrthoView v;
+    v.east  = {static_cast<float>(-sin_lon0),
+               static_cast<float>( cos_lon0),
+               0.0f};
+    v.north = {static_cast<float>(-sin_lat0 * cos_lon0),
+               static_cast<float>(-sin_lat0 * sin_lon0),
+               static_cast<float>( cos_lat0)};
+    v.up    = {static_cast<float>( cos_lat0 * cos_lon0),
+               static_cast<float>( cos_lat0 * sin_lon0),
+               static_cast<float>( sin_lat0)};
+    v.cx = cx;
+    v.cy = cy;
+    v.radius_px = radius_px;
+    v.inv_radius = radius_px ? 1.0f / static_cast<float>(radius_px) : 0.0f;
+    return v;
+}
+
+ScreenPoint projectUnit(const OrthoView& view, const UnitVec& p) {
+    // Nine multiplies and six adds. No trig, no doubles, no division.
+    const float e = view.east.x  * p.x + view.east.y  * p.y + view.east.z  * p.z;
+    const float n = view.north.x * p.x + view.north.y * p.y + view.north.z * p.z;
+    const float u = view.up.x    * p.x + view.up.y    * p.y + view.up.z    * p.z;
+
+    ScreenPoint out;
+    // `up` is the cosine of the angular distance from the centre of the disc.
+    // Positive is the near side; negative is around the back and must not be
+    // drawn, or the coastline folds through the planet.
+    out.visible = (u >= 0.0f);
+
+    const float r = static_cast<float>(view.radius_px);
+    out.x = static_cast<int>(std::lround(view.cx + r * e));
+    out.y = static_cast<int>(std::lround(view.cy - r * n));  // screen y grows DOWN
+    return out;
+}
+
+SpherePoint unprojectUnit(const OrthoView& view, int x, int y) {
+    // Where the pixel sits on the visible disc, in units of one radius.
+    const float e = (x - view.cx) * view.inv_radius;
+    const float n = (view.cy - y) * view.inv_radius;   // screen y grows DOWN
+    const float d2 = e * e + n * n;
+
+    SpherePoint out;
+    if (d2 > 1.0f) return out;    // off the disc; there is no sphere here
+    out.on_globe = true;
+
+    // An orthographic view is a bundle of parallel rays, so the ray through
+    // this pixel meets the unit sphere where e^2 + n^2 + u^2 == 1. Two roots;
+    // the positive one is the hemisphere facing you. Taking the negative root
+    // would draw the far side of the planet, mirrored.
+    const float u = std::sqrt(1.0f - d2);
+
+    // Same three rows as projectUnit, applied the other way: there they
+    // read a direction off the ECEF axes, here they build one from the
+    // observer's. A rotation matrix is its own inverse when transposed, which
+    // is why no matrix arithmetic is needed to turn one into the other.
+    out.dir = {e * view.east.x + n * view.north.x + u * view.up.x,
+               e * view.east.y + n * view.north.y + u * view.up.y,
+               e * view.east.z + n * view.north.z + u * view.up.z};
+    return out;
+}
+
 const char* compassPoint(double azimuth_deg) {
     static constexpr const char* kPoints[16] = {
     "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
