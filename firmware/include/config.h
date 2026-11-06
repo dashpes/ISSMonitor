@@ -137,6 +137,12 @@ constexpr double   PASS_MIN_ELEVATION_DEG = 10.0;  // below this, not worth look
 constexpr int32_t  PASS_SEARCH_HORIZON_S  = 36 * 3600;
 constexpr int32_t  PASS_COARSE_STEP_S     = 60;
 constexpr uint32_t ALERT_LEAD_SECONDS     = 300;   // LED starts 5 min before AOS
+// AUX1 turns the LED into a Morse beacon (app/alert.cpp). NA1SS is the ISS's
+// own amateur-radio callsign; "CQ DE" is ham for "calling anyone, this is".
+// Letters, digits and spaces only. The unit is one dot: 120 ms is 10 words
+// per minute, slow enough to read off an LED by eye.
+constexpr char     MORSE_BEACON[]         = "CQ DE NA1SS";
+constexpr uint32_t MORSE_UNIT_MS          = 120;
 constexpr int      LDR_NIGHT_THRESHOLD    = 800;   // calibrate this on the bench
 // Hysteresis band. Go dim below the threshold, but do not come back out of
 // it until the reading is this much ABOVE the threshold again. Without a gap
