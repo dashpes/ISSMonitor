@@ -10,11 +10,13 @@
 // nothing visible has changed. That early-out is the whole reason three SPI
 // screens can share one bus and still feel instant.
 //
+#include "ui/rotated_frame.h"
 #include "ui/screen.h"
 
 class TelemetryScreen : public Screen {
   public:
-    explicit TelemetryScreen(RoundPanel& p) : Screen(p) {}
+    explicit TelemetryScreen(RoundPanel& p)
+        : Screen(p), _frame(p, cfg::ROT_TELEMETRY_DEG) {}
     void begin(const AppState& s) override;
     void render(const AppState& s) override;
     void onClick(AppState& s) override;
@@ -24,6 +26,8 @@ class TelemetryScreen : public Screen {
     void drawFurniture(const AppState& s);
     void drawGauge(const AppState& s, double value);
     static double deg_to_rad_local(double d);
+
+    RotatedFrame _frame;           // what every draw call below goes through
 
     double    _last_a = 0.0 / 0.0;    // NaN: nothing drawn yet
     double    _last_b = 0.0 / 0.0;

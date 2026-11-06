@@ -75,6 +75,23 @@ class RoundPanel : public lgfx::LGFX_Device {
     lgfx::Panel_GC9A01  _panel;
 };
 
+// A screen's rotation (cfg::ROT_*_DEG), split between the two places it can
+// happen. Whole quarter turns go to setRotation() and cost nothing -- the
+// panel just scans its memory in a different order. The remainder, 0 to 89
+// degrees, is the part only software can do. -135 is two quarter turns plus
+// 45; -90 is three quarter turns and no remainder at all.
+constexpr uint8_t panelQuarterTurns(int deg) {
+    const int floor_turns = deg / 90 - (deg % 90 < 0 ? 1 : 0);   // round DOWN
+    return static_cast<uint8_t>(((floor_turns % 4) + 4) % 4);
+}
+constexpr int softwareRotationDeg(int deg) {
+    return ((deg % 90) + 90) % 90;
+}
+static_assert(panelQuarterTurns(-135) == 2 && softwareRotationDeg(-135) == 45, "");
+static_assert(panelQuarterTurns(135)  == 1 && softwareRotationDeg(135)  == 45, "");
+static_assert(panelQuarterTurns(-90)  == 3 && softwareRotationDeg(-90)  == 0,  "");
+static_assert(panelQuarterTurns(0)    == 0 && softwareRotationDeg(0)    == 0,  "");
+
 // Prepare the shared bus. MUST run before the first RoundPanel::init().
 //
 // Two things, and both are load-bearing:

@@ -7,11 +7,12 @@
 //   2 SCHEDULE    the next three passes
 //   3 VISIBILITY  sunlit satellite + dark sky, or not
 //
+#include "ui/rotated_frame.h"
 #include "ui/screen.h"
 
 class SkyScreen : public Screen {
   public:
-    explicit SkyScreen(RoundPanel& p) : Screen(p) {}
+    explicit SkyScreen(RoundPanel& p) : Screen(p), _frame(p, cfg::ROT_SKY_DEG) {}
     void begin(const AppState& s) override;
     void render(const AppState& s) override;
     void onClick(AppState& s) override;
@@ -19,6 +20,8 @@ class SkyScreen : public Screen {
 
   private:
     void drawCompassRose(const AppState& s, int radius);
+
+    RotatedFrame _frame;           // what every draw call below goes through
 
     int64_t _last_countdown = -1;
     uint8_t _last_mode = 255;

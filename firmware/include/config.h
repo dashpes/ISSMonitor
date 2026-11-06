@@ -55,6 +55,19 @@ constexpr uint8_t PIN_CS_TELEMETRY = 5;   // left
 constexpr uint8_t PIN_CS_GLOBE     = 21;  // center
 constexpr uint8_t PIN_CS_SKY       = 22;  // right
 
+// ---- Per-display rotation: degrees CLOCKWISE, as seen from the front ----
+// How far each image has to turn to read upright. The modules sit in the
+// panel at whatever angle their header tab allows (case/CASE_NOTES.md), so
+// these are facts about the case, measured on the bench.
+//
+// Multiples of 90 are free -- the panel scans its memory in a different
+// order. Anything else costs a full-frame sprite rotated in software on every
+// push (ui/rotated_frame.h), so keep the odd angles to the screens that
+// genuinely need them.
+constexpr int ROT_TELEMETRY_DEG = -135;  // left
+constexpr int ROT_GLOBE_DEG     =   90;  // center
+constexpr int ROT_SKY_DEG       =  135;  // right
+
 constexpr int  SCREEN_W = 240;
 constexpr int  SCREEN_H = 240;
 constexpr int  SCREEN_R = 120;           // radius, used constantly by the UI

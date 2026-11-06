@@ -4,7 +4,7 @@
 // same from across the room.
 //
 // Orthographic projection of the coastline, a graticule, the ground track and
-// the ISS, composited in an 8-bit sprite. See begin() for why 8-bit and not 16.
+// the ISS, composited in a 4-bit palette sprite. See begin() for why.
 //
 // The land and graticule vertices are generated -- src/ui/globe_data.h, built
 // by scripts/gen_globe_data.py. They ship as unit vectors rather than lat/lon
@@ -13,6 +13,7 @@
 //
 #include "orbit/geo.h"
 #include "theme.h"
+#include "ui/rotated_frame.h"
 #include "ui/screen.h"
 
 // The eight colours the globe draws with. In the sprite they are PALETTE

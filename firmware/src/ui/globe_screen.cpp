@@ -121,10 +121,16 @@ void GlobeScreen::begin(const AppState& s) {
     // bits, so its blue is discarded outright and the Atlantic comes out dark
     // green. Against green coastlines the planet reads as one flat smudge.
     //
-    // A palette is the same 57.6 kB plus 768 bytes of lookup table, and every
-    // colour in theme.h survives exactly. The cost is that draw calls now take
-    // an index rather than a colour -- hence GlobePens, in the header.
-    _sprite.setColorDepth(lgfx::palette_8bit);
+    // A palette keeps every colour in theme.h exact. The cost is that draw
+    // calls take an index rather than a colour -- hence GlobePens, in the
+    // header.
+    //
+    // And 4 bits of palette, not 8: the globe draws with nine colours, so 16
+    // slots is plenty, and it halves the sprite to 28.8 kB. That half is not
+    // spare. The two lower screens each need a 28.8 kB frame of their own to
+    // be rotated (ui/rotated_frame.h), and with the globe still at 8 bits the
+    // HTTPS fetch of the TLE had too little heap left to start TLS at all.
+    _sprite.setColorDepth(lgfx::palette_4bit);
     _have_sprite = _sprite.createSprite(cfg::SCREEN_W, cfg::SCREEN_H) != nullptr;
     if (!_have_sprite) {
         Serial.println("[globe] sprite alloc FAILED -- drawing direct, expect flicker");
@@ -241,7 +247,7 @@ void GlobeScreen::render(const AppState& s) {
         }
         drawInto(&_sprite, s, view, kSpritePens);
         const uint32_t t_draw = micros();
-        _sprite.pushSprite(&_tft, 0, 0);
+        pushRotated(_sprite, _tft, softwareRotationDeg(cfg::ROT_GLOBE_DEG));
         profileTick(rebuilt, t_start, t_mask, t_draw, micros());
     } else {
         drawInto(&_tft, s, view, directPens(palette(night)));

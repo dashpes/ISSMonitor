@@ -83,9 +83,13 @@ void setup() {
     tft_telemetry.init();
     tft_globe.init();
     tft_sky.init();
+    // The quarter-turn part of each screen's rotation. Whatever is left over
+    // (the 45 in 135) is done by the screen itself -- see ui/rotated_frame.h.
+    const int rotation_deg[SCR_COUNT] = {
+        cfg::ROT_TELEMETRY_DEG, cfg::ROT_GLOBE_DEG, cfg::ROT_SKY_DEG};
     for (int i = 0; i < SCR_COUNT; ++i) {
         auto* t = (i == 0) ? &tft_telemetry : (i == 1) ? &tft_globe : &tft_sky;
-        t->setRotation(0);
+        t->setRotation(panelQuarterTurns(rotation_deg[i]));
     }
     splash();
 

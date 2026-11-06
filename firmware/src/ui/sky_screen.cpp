@@ -42,42 +42,47 @@ void azElToXY(double az_deg, double el_deg, int radius, int& x, int& y) {
 }  // namespace
 
 void SkyScreen::begin(const AppState& s) {
-    _tft.fillScreen(palette(s.sw.night).bg);
+    _frame.begin(name());
+    const bool night = s.sw.night || s.dim;
+    _tft.fillScreen(palette(night).bg);   // the panel's corners, outside the frame
+    _frame.target().fillScreen(_frame.pens(night).bg);
     _last_mode = 255;
 }
 
 void SkyScreen::drawCompassRose(const AppState& s, int radius) {
-    const Palette& p = palette(s.sw.night || s.dim);
-    _tft.drawCircle(CX, CY, radius, p.grid);
-    _tft.drawCircle(CX, CY, radius / 2, p.grid);
+    LovyanGFX& gfx = _frame.target();
+    const Palette& p = _frame.pens(s.sw.night || s.dim);
+    gfx.drawCircle(CX, CY, radius, p.grid);
+    gfx.drawCircle(CX, CY, radius / 2, p.grid);
 
     static const char* kCardinals[4] = {"N", "E", "S", "W"};
-    _tft.setTextDatum(middle_center);
-    _tft.setTextSize(1);
-    _tft.setTextColor(p.dim, p.bg);
+    gfx.setTextDatum(middle_center);
+    gfx.setTextSize(1);
+    gfx.setTextColor(p.dim, p.bg);
     for (int i = 0; i < 4; ++i) {
         int x, y;
         azElToXY(i * 90.0, 0.0, radius + 12, x, y);
-        _tft.drawString(kCardinals[i], x, y);
+        gfx.drawString(kCardinals[i], x, y);
     }
 }
 
 void SkyScreen::render(const AppState& s) {
     const uint8_t mode = s.mode[SCR_SKY];
     const bool night = s.sw.night || s.dim;
-    const Palette& p = palette(night);
+    LovyanGFX& gfx = _frame.target();
+    const Palette& p = _frame.pens(night);
 
     const bool repaint = (mode != _last_mode) || (night != _last_night);
     if (repaint) {
         _last_mode = mode;
         _last_night = night;
         _last_countdown = -1;
-        _tft.fillScreen(p.bg);
-        _tft.drawCircle(CX, CY, cfg::SCREEN_R - 1, p.grid);
-        _tft.setTextDatum(middle_center);
-        _tft.setTextColor(p.dim, p.bg);
-        _tft.setTextSize(1);
-        _tft.drawString(modeName(mode), CX, 20);
+        gfx.fillScreen(p.bg);
+        gfx.drawCircle(CX, CY, cfg::SCREEN_R - 1, p.grid);
+        gfx.setTextDatum(middle_center);
+        gfx.setTextColor(p.dim, p.bg);
+        gfx.setTextSize(1);
+        gfx.drawString(modeName(mode), CX, 20);
     }
 
     const bool overhead = s.iss_look.elevation_deg > cfg::PASS_MIN_ELEVATION_DEG;
@@ -92,13 +97,13 @@ void SkyScreen::render(const AppState& s) {
             if (repaint) drawCompassRose(s, 66);
 
             char buf[24];
-            _tft.setTextDatum(middle_center);
-            _tft.setTextSize(2);
-            _tft.setTextColor(overhead ? p.warn : p.text, p.bg);
+            gfx.setTextDatum(middle_center);
+            gfx.setTextSize(2);
+            gfx.setTextColor(overhead ? p.warn : p.text, p.bg);
             if (overhead)        std::snprintf(buf, sizeof(buf), " OVERHEAD ");
             else if (have_pass)  fmtHMS(secs, buf, sizeof(buf));
             else                 std::snprintf(buf, sizeof(buf), " --:--:-- ");
-            _tft.drawString(buf, CX, 48);
+            gfx.drawString(buf, CX, 48);
 
             if (have_pass && repaint) {
                 // Arc across the rose from where it rises to where it sets.
@@ -106,10 +111,10 @@ void SkyScreen::render(const AppState& s) {
                 int x0, y0, x1, y1;
                 azElToXY(pass.aos_azimuth_deg, 0, 66, x0, y0);
                 azElToXY(pass.max_azimuth_deg, pass.max_elevation_deg, 66, x1, y1);
-                _tft.drawLine(x0, y0, x1, y1, p.accent);
+                gfx.drawLine(x0, y0, x1, y1, p.accent);
                 azElToXY(pass.los_azimuth_deg, 0, 66, x0, y0);
-                _tft.drawLine(x1, y1, x0, y0, p.accent);
-                _tft.fillCircle(x1, y1, 3, p.text);
+                gfx.drawLine(x1, y1, x0, y0, p.accent);
+                gfx.fillCircle(x1, y1, 3, p.text);
 
                 char sub[40];
                 std::snprintf(sub, sizeof(sub), "MAX %.0f  %s>%s  %s",
@@ -117,9 +122,9 @@ void SkyScreen::render(const AppState& s) {
                               orbit::compassPoint(pass.aos_azimuth_deg),
                               orbit::compassPoint(pass.los_azimuth_deg),
                               pass.sunlit ? "VISIBLE" : "NOT LIT");
-                _tft.setTextSize(1);
-                _tft.setTextColor(pass.sunlit ? p.accent : p.dim, p.bg);
-                _tft.drawString(sub, CX, 214);
+                gfx.setTextSize(1);
+                gfx.setTextColor(pass.sunlit ? p.accent : p.dim, p.bg);
+                gfx.drawString(sub, CX, 214);
             }
             break;
         }
@@ -131,23 +136,23 @@ void SkyScreen::render(const AppState& s) {
             if (x == prev_x && y == prev_y && !repaint) return;
 
             if (repaint) drawCompassRose(s, 88);
-            if (prev_x >= 0) _tft.fillCircle(prev_x, prev_y, 5, p.bg);   // erase
+            if (prev_x >= 0) gfx.fillCircle(prev_x, prev_y, 5, p.bg);   // erase
             if (repaint) drawCompassRose(s, 88);
 
             prev_x = x; prev_y = y;
             if (s.iss_look.elevation_deg >= 0.0) {
-                _tft.fillCircle(x, y, 4, p.text);
-                _tft.drawCircle(x, y, 7, p.accent);
+                gfx.fillCircle(x, y, 4, p.text);
+                gfx.drawCircle(x, y, 7, p.accent);
             }
             char buf[32];
             std::snprintf(buf, sizeof(buf), "AZ %3.0f %-3s  EL %+3.0f ",
                           s.iss_look.azimuth_deg,
                           orbit::compassPoint(s.iss_look.azimuth_deg),
                           s.iss_look.elevation_deg);
-            _tft.setTextDatum(middle_center);
-            _tft.setTextSize(1);
-            _tft.setTextColor(s.iss_look.elevation_deg >= 0 ? p.text : p.dim, p.bg);
-            _tft.drawString(buf, CX, 214);
+            gfx.setTextDatum(middle_center);
+            gfx.setTextSize(1);
+            gfx.setTextColor(s.iss_look.elevation_deg >= 0 ? p.text : p.dim, p.bg);
+            gfx.drawString(buf, CX, 214);
             break;
         }
 
@@ -156,8 +161,8 @@ void SkyScreen::render(const AppState& s) {
             if (secs / 60 == _last_countdown && !repaint) return;
             _last_countdown = secs / 60;
 
-            _tft.setTextDatum(middle_center);
-            _tft.setTextSize(1);
+            gfx.setTextDatum(middle_center);
+            gfx.setTextSize(1);
             for (int i = 0; i < 3; ++i) {
                 char row[56];
                 if (i < s.pass_count) {
@@ -167,13 +172,13 @@ void SkyScreen::render(const AppState& s) {
                                   mins / 60, mins % 60, pass.max_elevation_deg,
                                   orbit::compassPoint(pass.aos_azimuth_deg),
                                   pass.sunlit ? "VIS" : "   ");
-                    _tft.setTextColor(pass.sunlit ? p.accent : p.dim, p.bg);
+                    gfx.setTextColor(pass.sunlit ? p.accent : p.dim, p.bg);
                 } else {
                     std::snprintf(row, sizeof(row), "%-28s", "--");
-                    _tft.setTextColor(p.dim, p.bg);
+                    gfx.setTextColor(p.dim, p.bg);
                 }
-                _tft.drawString("                              ", CX, 90 + i * 26);
-                _tft.drawString(row, CX, 90 + i * 26);
+                gfx.drawString("                              ", CX, 90 + i * 26);
+                gfx.drawString(row, CX, 90 + i * 26);
             }
             break;
         }
@@ -185,18 +190,20 @@ void SkyScreen::render(const AppState& s) {
             const char* verdict = !have_pass        ? "NO DATA"
                                 : s.passes[0].sunlit ? "VISIBLE"
                                                      : "NOT LIT";
-            _tft.setTextDatum(middle_center);
-            _tft.setTextSize(2);
-            _tft.setTextColor(have_pass && s.passes[0].sunlit ? p.accent : p.dim, p.bg);
-            _tft.drawString("          ", CX, CY - 10);
-            _tft.drawString(verdict, CX, CY - 10);
+            gfx.setTextDatum(middle_center);
+            gfx.setTextSize(2);
+            gfx.setTextColor(have_pass && s.passes[0].sunlit ? p.accent : p.dim, p.bg);
+            gfx.drawString("          ", CX, CY - 10);
+            gfx.drawString(verdict, CX, CY - 10);
 
-            _tft.setTextSize(1);
-            _tft.setTextColor(p.dim, p.bg);
-            _tft.drawString("SUNLIT SAT + DARK SKY", CX, CY + 24);
+            gfx.setTextSize(1);
+            gfx.setTextColor(p.dim, p.bg);
+            gfx.drawString("SUNLIT SAT + DARK SKY", CX, CY + 24);
             break;
         }
     }
+
+    _frame.present();
 }
 
 void SkyScreen::onClick(AppState& s) {

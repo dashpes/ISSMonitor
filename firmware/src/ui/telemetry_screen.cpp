@@ -11,10 +11,11 @@ namespace {
 constexpr int CX = cfg::SCREEN_R;
 constexpr int CY = cfg::SCREEN_R;
 
-// The value band is redrawn constantly, so it goes through a sprite: build the
-// new frame off-screen, push it in one SPI burst. Drawing straight to the
-// panel would show a visible erase-then-redraw flicker at 10 fps.
-// 240 x 70 x 16bpp = 33.6 kB. One of these, reused by every mode.
+// The value band is redrawn constantly. Rotated, the whole screen is already
+// off-screen (ui/rotated_frame.h) and the band is just drawn into it. Drawing
+// direct, it goes through its own sprite instead -- built off-screen, pushed
+// in one SPI burst -- because straight to the panel the erase-then-redraw
+// flickers visibly at 10 fps. 240 x 70 x 16bpp = 33.6 kB, reused by every mode.
 constexpr int BAND_Y = 86;
 constexpr int BAND_H = 70;
 
@@ -55,24 +56,28 @@ const char* linkText(LinkState l) {
 }  // namespace
 
 void TelemetryScreen::begin(const AppState& s) {
-    _tft.fillScreen(palette(s.sw.night).bg);
+    _frame.begin(name());
+    const bool night = s.sw.night || s.dim;
+    _tft.fillScreen(palette(night).bg);   // the panel's corners, outside the frame
+    _frame.target().fillScreen(_frame.pens(night).bg);
     _last_mode = 255;          // force a full repaint on the first render
 }
 
 void TelemetryScreen::drawFurniture(const AppState& s) {
-    const Palette& p = palette(s.sw.night);
-    _tft.startWrite();
-    _tft.fillScreen(p.bg);
+    LovyanGFX& gfx = _frame.target();
+    const Palette& p = _frame.pens(s.sw.night || s.dim);
+    gfx.startWrite();
+    gfx.fillScreen(p.bg);
 
     // Outer bezel rings.
-    _tft.drawCircle(CX, CY, cfg::SCREEN_R - 1, p.grid);
-    _tft.drawCircle(CX, CY, cfg::SCREEN_R - 2, p.grid);
+    gfx.drawCircle(CX, CY, cfg::SCREEN_R - 1, p.grid);
+    gfx.drawCircle(CX, CY, cfg::SCREEN_R - 2, p.grid);
 
     // Mode label across the top.
-    _tft.setTextDatum(middle_center);
-    _tft.setTextColor(p.dim, p.bg);
-    _tft.setTextSize(1);
-    _tft.drawString(modeName(s.mode[SCR_TELEMETRY]), CX, 34);
+    gfx.setTextDatum(middle_center);
+    gfx.setTextColor(p.dim, p.bg);
+    gfx.setTextSize(1);
+    gfx.drawString(modeName(s.mode[SCR_TELEMETRY]), CX, 34);
 
     // Gauge ticks: a 270-degree sweep with the gap at the bottom, so the arc
     // reads like an instrument rather than a pie chart.
@@ -82,14 +87,14 @@ void TelemetryScreen::drawFurniture(const AppState& s) {
             const double a = deg_to_rad_local(135.0 + (270.0 * i) / 8.0);
             const int r0 = cfg::SCREEN_R - 8;
             const int r1 = cfg::SCREEN_R - (i % 2 == 0 ? 20 : 14);
-            _tft.drawLine(CX + static_cast<int>(r0 * std::cos(a)),
-                          CY + static_cast<int>(r0 * std::sin(a)),
-                          CX + static_cast<int>(r1 * std::cos(a)),
-                          CY + static_cast<int>(r1 * std::sin(a)),
-                          p.grid);
+            gfx.drawLine(CX + static_cast<int>(r0 * std::cos(a)),
+                         CY + static_cast<int>(r0 * std::sin(a)),
+                         CX + static_cast<int>(r1 * std::cos(a)),
+                         CY + static_cast<int>(r1 * std::sin(a)),
+                         p.grid);
         }
     }
-    _tft.endWrite();
+    gfx.endWrite();
 }
 
 double TelemetryScreen::deg_to_rad_local(double d) {
@@ -97,7 +102,8 @@ double TelemetryScreen::deg_to_rad_local(double d) {
 }
 
 void TelemetryScreen::drawGauge(const AppState& s, double value) {
-    const Palette& p = palette(s.sw.night);
+    LovyanGFX& gfx = _frame.target();
+    const Palette& p = _frame.pens(s.sw.night || s.dim);
     const Gauge g = gaugeFor(s.mode[SCR_TELEMETRY], s.sw.units_imperial);
     if (g.hi <= g.lo) return;
 
@@ -109,10 +115,10 @@ void TelemetryScreen::drawGauge(const AppState& s, double value) {
     // 135 degrees (lower-left) and runs 270 degrees to 405 (lower-right).
     const int r_out = cfg::SCREEN_R - 10;
     const int r_in  = cfg::SCREEN_R - 16;
-    _tft.startWrite();
-    _tft.fillArc(CX, CY, r_in, r_out, 135, 405, p.grid);              // track
-    _tft.fillArc(CX, CY, r_in, r_out, 135, 135 + 270.0 * frac, p.accent);  // filled
-    _tft.endWrite();
+    gfx.startWrite();
+    gfx.fillArc(CX, CY, r_in, r_out, 135, 405, p.grid);              // track
+    gfx.fillArc(CX, CY, r_in, r_out, 135, 135 + 270.0 * frac, p.accent);  // filled
+    gfx.endWrite();
 }
 
 void TelemetryScreen::render(const AppState& s) {
@@ -127,7 +133,8 @@ void TelemetryScreen::render(const AppState& s) {
         drawFurniture(s);
     }
 
-    const Palette& p = palette(night);
+    LovyanGFX& gfx = _frame.target();
+    const Palette& p = _frame.pens(night);
 
     char big[24]  = {0};
     char unit[16] = {0};
@@ -184,32 +191,44 @@ void TelemetryScreen::render(const AppState& s) {
         }
     }
 
-    // ---- the value band, built off-screen then pushed in one go ----
-    LGFX_Sprite band(&_tft);
-    band.setColorDepth(16);
-    if (band.createSprite(cfg::SCREEN_W, BAND_H)) {
-        band.fillSprite(p.bg);
-        band.setTextDatum(middle_center);
+    // ---- the value band ----
+    // `top` is where the band starts on whatever it is handed.
+    auto drawBand = [&](LovyanGFX& d, int top) {
+        d.fillRect(0, top, cfg::SCREEN_W, BAND_H, p.bg);
+        d.setTextDatum(middle_center);
 
-        band.setTextColor(p.text);
-        band.setTextSize(mode == 3 ? 2 : 3);
-        band.drawString(big, cfg::SCREEN_W / 2, 22);
+        d.setTextColor(p.text);
+        d.setTextSize(mode == 3 ? 2 : 3);
+        d.drawString(big, cfg::SCREEN_W / 2, top + 22);
 
-        band.setTextColor(p.accent);
-        band.setTextSize(mode == 2 ? 2 : 1);
-        band.drawString(unit, cfg::SCREEN_W / 2, 50);
-
-        band.pushSprite(0, BAND_Y);
-        band.deleteSprite();
+        d.setTextColor(p.accent);
+        d.setTextSize(mode == 2 ? 2 : 1);
+        d.drawString(unit, cfg::SCREEN_W / 2, top + 50);
+    };
+    if (_frame.active()) {
+        // Already off-screen: nobody sees the erase before the redraw.
+        drawBand(gfx, BAND_Y);
+    } else {
+        // Drawing straight to the panel, the erase-then-redraw would flicker
+        // at 10 fps, so build the band in a sprite and push it in one burst.
+        LGFX_Sprite band(&_tft);
+        band.setColorDepth(16);
+        if (band.createSprite(cfg::SCREEN_W, BAND_H)) {
+            drawBand(band, 0);
+            band.pushSprite(0, BAND_Y);
+            band.deleteSprite();
+        }
     }
 
-    _tft.setTextDatum(middle_center);
-    _tft.setTextColor(p.dim, p.bg);
-    _tft.setTextSize(1);
-    _tft.drawString("                        ", CX, 176);   // erase
-    _tft.drawString(sub, CX, 176);
+    gfx.setTextDatum(middle_center);
+    gfx.setTextColor(p.dim, p.bg);
+    gfx.setTextSize(1);
+    gfx.drawString("                        ", CX, 176);   // erase
+    gfx.drawString(sub, CX, 176);
 
     if (has_gauge) drawGauge(s, gauge_value);
+
+    _frame.present();
 }
 
 void TelemetryScreen::onClick(AppState& s) {
