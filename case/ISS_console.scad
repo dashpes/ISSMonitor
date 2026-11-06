@@ -118,17 +118,17 @@ lbl_size  = 2.4;       // switch labels (13 mm pitch — keep names to 5 letters
 
 /* ---------------- Shell features ---------------- */
 // Panel-mount USB-C (rectangular flange, 2 screws) on the back wall
-usbc_x      = CX;
+usbc_x      = CX+40;      // right of centre so its body and cable stay clear of the perfboard
 usbc_z      = 18;
-usbc_cut    = [14, 8];     // MEASURE: connector body cutout (w x h)
-usbc_hole_sp= 21.5;        // MEASURE: screw hole spacing
-usbc_hole_d = 2.6;         // pilot for the supplied self-tapping screws (2.5 for M3 tap)
+usbc_cut    = [15, 8.5];   // connector body cutout (w x h); body measured ~14.4 wide
+usbc_hole_sp= 22.4;        // MEASURE: same-side edge to same-side edge of the two screw holes (= centre spacing). 19.1 inside-to-inside + ~3.3 hole
+usbc_hole_d = 2.5;         // M3 screws thread straight into a 2.5 mm hole in PLA/PETG (pad is 5.5 mm thick)
 usbc_pad    = [34, 16, 3]; // thicker pad inside the back wall so the screws bite
 
 // 4 x 6 cm perfboard on the floor
 pcb_size    = [60, 40];
 pcb_hole_dx = 54;   pcb_hole_dy = 34;   // MEASURE: your perfboard's corner holes
-pcb_pos     = [CX, 50];    // centre of the board (x, y) on the floor
+pcb_pos     = [CX-18, 50]; // centre of the board (x, y) on the floor. ESP32 sits with its USB-C port at the board's RIGHT edge, facing the side wall
 peg_d       = 6;   peg_h = 5;   peg_hole_d = 2.5;
 
 // Rubber feet recesses
@@ -301,7 +301,12 @@ module mock() {
     slope_frame() color("lime", 0.8) translate([led_xz[0],-1,led_xz[1]]) ycyl(5, 8);
     color("orange", 0.8) translate([ldr_top[0], ldr_top[1], H-wall-4]) cylinder(d=5, h=4);
     color("tan", 0.8) translate([pcb_pos[0]-pcb_size[0]/2, pcb_pos[1]-pcb_size[1]/2, wall+peg_h]) cube([pcb_size[0], pcb_size[1], 1.6]);
-    color("dimgray", 0.8) translate([pcb_pos[0]-26, pcb_pos[1]-14, wall+peg_h+1.6+8]) cube([52, 28, 6]);
+    color("dimgray", 0.8) translate([pcb_pos[0]+pcb_size[0]/2-51, pcb_pos[1]-13, wall+peg_h+1.6+8]) cube([51, 26, 6]);   // ESP32, port at the board's right edge
+    color("silver", 0.9) translate([pcb_pos[0]+pcb_size[0]/2, pcb_pos[1]-4.5, wall+peg_h+1.6+8+1]) cube([25, 9, 6.5]);   // USB-C plug + strain relief
+    color("black", 0.7) translate([pcb_pos[0]+pcb_size[0]/2+25, pcb_pos[1], wall+peg_h+1.6+8+4.2]) rotate([0,90,0]) cylinder(d=4.5, h=usbc_x-(pcb_pos[0]+pcb_size[0]/2+25)-12);
+    color("black", 0.7) translate([usbc_x, pcb_pos[1]+12, wall+peg_h+1.6+8+4.2]) rotate([-90,0,0]) cylinder(d=4.5, h=D-wall-18-(pcb_pos[1]+12));   // cable sweeping round into the panel mount
+    color("black", 0.7) translate([usbc_x-12, pcb_pos[1]+12, wall+peg_h+1.6+8+4.2]) rotate_extrude(angle=-90) translate([12,0]) circle(d=4.5);
+    color("#333", 0.8) translate([usbc_x-8, D-wall-18, usbc_z-6]) cube([16, 18, 12]);   // panel-mount body inside the wall
     color("black", 0.8) translate([usbc_x-14, D, usbc_z-6]) cube([28, 4, 12]);
 }
 
