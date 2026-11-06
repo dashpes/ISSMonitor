@@ -46,9 +46,9 @@ constexpr uint8_t PIN_DC   = 17;  // TX2
 constexpr uint8_t PIN_RST  = 16;  // RX2
 // NOTE: no backlight pin. The Hosyond modules are the 7-pin type (no BLK),
 // so the backlight is always on and D4 is free -- which the case pin plan
-// spends on Encoder R's DT line. "Night mode" therefore dims by switching to
+// spends on an encoder's DT line. "Night mode" therefore dims by switching to
 // the red palette, not by dimming the backlight. If your modules DO have an
-// 8th BLK pin, you have a conflict: move Encoder R DT somewhere else.
+// 8th BLK pin, you have a conflict: move that DT line somewhere else.
 
 // ---- Per-display chip select ----
 constexpr uint8_t PIN_CS_TELEMETRY = 5;   // left
@@ -61,24 +61,32 @@ constexpr int  SCREEN_R = 120;           // radius, used constantly by the UI
 constexpr uint32_t SPI_HZ = 40'000'000;  // start here; drop to 27 MHz if glitchy
 
 // ---- Toggle switches. All INPUT_PULLUP: ON == LOW. ----
-constexpr uint8_t PIN_SW_NIGHT = 32;
-constexpr uint8_t PIN_SW_UNITS = 33;
-constexpr uint8_t PIN_SW_ALERT = 25;
-constexpr uint8_t PIN_SW_TRACK = 26;
-constexpr uint8_t PIN_SW_AUX1  = 14;
-constexpr uint8_t PIN_SW_AUX2  = 15;  // strapping pin; only affects boot-log verbosity
+// Mapped to where each switch actually sits in the panel, left to right under
+// the engraved labels, not to the PARTS_LIST plan: the switches went into the
+// panel in a different order, and repinning here beats unscrewing them.
+// Measured slot by slot on the bench (hw_check/inputs_check.cpp).
+constexpr uint8_t PIN_SW_NIGHT = 32;  // slot 1
+constexpr uint8_t PIN_SW_UNITS = 26;  // slot 2
+constexpr uint8_t PIN_SW_ALERT = 33;  // slot 3
+constexpr uint8_t PIN_SW_TRACK = 25;  // slot 4
+constexpr uint8_t PIN_SW_AUX1  = 14;  // slot 5
+constexpr uint8_t PIN_SW_AUX2  = 15;  // slot 6; strapping pin, only affects boot-log verbosity
 
 // ---- Rotary encoders (KY-040) -- one under each lower screen ----
 // Per case/CASE_NOTES.md. GPIO 34-39 are input-only with no internal pull-up;
 // the KY-040 breakout carries its own 10k pull-ups, so that is fine for
 // CLK/DT. The push switches are on normal pins and use INPUT_PULLUP.
-constexpr uint8_t PIN_ENC_L_CLK = 36;  // VP
-constexpr uint8_t PIN_ENC_L_DT  = 39;  // VN
-constexpr uint8_t PIN_ENC_L_SW  = 27;
+//
+// The two knobs came out mirrored on the perfboard: the LEFT knob is on the
+// pins the plan gave the right one, and vice versa. Swapped here rather than
+// resoldered -- each knob must drive the screen above it.
+constexpr uint8_t PIN_ENC_L_CLK = 35;  // input-only
+constexpr uint8_t PIN_ENC_L_DT  = 4;   // freed by the 7-pin displays
+constexpr uint8_t PIN_ENC_L_SW  = 19;
 
-constexpr uint8_t PIN_ENC_R_CLK = 35;  // input-only
-constexpr uint8_t PIN_ENC_R_DT  = 4;   // freed by the 7-pin displays
-constexpr uint8_t PIN_ENC_R_SW  = 19;
+constexpr uint8_t PIN_ENC_R_CLK = 36;  // VP
+constexpr uint8_t PIN_ENC_R_DT  = 39;  // VN
+constexpr uint8_t PIN_ENC_R_SW  = 27;
 
 // ---- Analog / output ----
 constexpr uint8_t PIN_LDR = 34;  // ADC1, keeps working with Wi-Fi on

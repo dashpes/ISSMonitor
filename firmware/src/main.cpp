@@ -118,18 +118,29 @@ void loop() {
 #if HAVE_ENCODER
         // Left knob drives the telemetry screen, right knob drives the sky
         // screen. The globe has no knob -- it always shows the same thing.
+        // One line per knob event: a human turns these a few times a minute,
+        // so the log costs nothing, and "which knob moved which screen, and
+        // did it turn or click" is the first question when one misbehaves.
         if (int d = inputs::takeEncoderDelta(0)) {
             int m = g_state.mode[SCR_TELEMETRY] + d;
             const int n = kModeCount[SCR_TELEMETRY];
             g_state.mode[SCR_TELEMETRY] = static_cast<uint8_t>(((m % n) + n) % n);
+            Serial.printf("[knob] L %+d -> mode %u\n", d, g_state.mode[SCR_TELEMETRY]);
         }
         if (int d = inputs::takeEncoderDelta(1)) {
             int m = g_state.mode[SCR_SKY] + d;
             const int n = kModeCount[SCR_SKY];
             g_state.mode[SCR_SKY] = static_cast<uint8_t>(((m % n) + n) % n);
+            Serial.printf("[knob] R %+d -> mode %u\n", d, g_state.mode[SCR_SKY]);
         }
-        if (inputs::takeEncoderClick(0)) s_telemetry.onClick(g_state);
-        if (inputs::takeEncoderClick(1)) s_sky.onClick(g_state);
+        if (inputs::takeEncoderClick(0)) {
+            s_telemetry.onClick(g_state);
+            Serial.printf("[knob] L click -> mode %u\n", g_state.mode[SCR_TELEMETRY]);
+        }
+        if (inputs::takeEncoderClick(1)) {
+            s_sky.onClick(g_state);
+            Serial.printf("[knob] R click -> mode %u\n", g_state.mode[SCR_SKY]);
+        }
 #endif
     }
 
