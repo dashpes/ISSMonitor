@@ -6,7 +6,7 @@ A 3-screen desk "spacecraft console" that tracks the International Space Station
 |---|---|---|
 | **Globe** | Top | Spinning cartoon Earth with the ISS orbiting along its real ground track |
 | **Lower-left** | Below left | Selectable via encoder L — e.g. telemetry (speed, altitude, lat/long) |
-| **Lower-right** | Below right | Selectable via encoder R — e.g. next visible pass over Tustin + compass |
+| **Lower-right** | Below right | Selectable via encoder R — e.g. next visible pass over your location + compass |
 
 Screens sit in a triangle (one on top, two below). Each lower screen has a click rotary encoder next to it; six toggles along the bottom change modes. A light sensor in the top of the case auto-dims the console, and a green LED flashes before a visible pass.
 
@@ -209,7 +209,7 @@ Everything runs from the ESP32's **USB-C port**. Total draw is well under 500 mA
 4. Data:
    - Orbit data (TLE), refreshed once a day: `https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE`
    - Time: NTP via `configTime()` (set timezone to `PST8PDT`)
-   - Observer location: Tustin, CA ≈ 33.746° N, 117.826° W
+   - Observer location: your latitude and longitude, set in `firmware/include/config.h`
 5. If the board doesn't show up as a port: try a different USB-C cable (many are charge-only), then install the **CH340** or **CP2102** driver. Match it to the small chip next to the USB port.
 
 ---

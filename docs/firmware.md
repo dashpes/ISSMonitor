@@ -121,9 +121,9 @@ All settings are in `firmware/include/config.h`. Each setting is a `constexpr` i
 
 | Setting | Default | Function |
 |---|---|---|
-| `OBS_LAT_DEG` | 33.746 | Observer latitude in degrees, north positive. Set it to your location. |
-| `OBS_LON_DEG` | −117.826 | Observer longitude in degrees, east positive. Set it to your location. |
-| `OBS_ALT_M` | 35.0 | Observer height above sea level in meters. |
+| `OBS_LAT_DEG` | Your latitude | Observer latitude in degrees, north positive. Example: 51.4769 for the Royal Observatory, Greenwich. |
+| `OBS_LON_DEG` | Your longitude | Observer longitude in degrees, east positive. Example: −0.0005 for the Royal Observatory, Greenwich. |
+| `OBS_ALT_M` | Your height | Observer height above sea level in meters. |
 | `TZ_STRING` | `PST8PDT,M3.2.0,M11.1.0` | POSIX time zone string for the system clock. |
 | `TLE_URL` | Celestrak, catalog number 25544 | The source of the TLE. 25544 is the ISS. |
 | `NTP_1`, `NTP_2` | `pool.ntp.org`, `time.nist.gov` | Time servers. |
