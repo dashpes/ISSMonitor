@@ -18,3 +18,7 @@ firmware/src/secrets.h
 # Editor / OS
 .vscode/
 .DS_Store
+
+# Local scratch: copies of case exports and R session history
+Claude outputs/
+.Rhistory
