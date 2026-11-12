@@ -38,7 +38,7 @@ This guide tells you how to build the ISS Monitor hardware. It covers the parts,
 | 2 | Female header strip, 2.54 mm | Socket for the ESP32. |
 | ~40 pins | Male header strip, 2.54 mm | Connectors for the displays, the switches, the LDR and the LED. |
 | ~30 | Female-to-female jumper wire, 20 cm | From the perfboard to the panel parts. |
-| 1 | Panel-mount USB-C extension cable, 0.3 m, male to female, screw flange | It must carry data. Then you can program the ESP32 through it. |
+| 1 | Panel-mount USB-C extension cable, 0.3 m, male to female | It must carry data. Then you can program the ESP32 through it. The unit uses a type with a screw flange. |
 | 1 | USB-C data cable and a 5 V USB power supply | The console uses less than 500 mA (estimate, not measured). |
 
 ### Case hardware
@@ -49,7 +49,7 @@ This guide tells you how to build the ISS Monitor hardware. It covers the parts,
 | 6 | M3 × 8 flat-head (countersunk) screw | Panel to shell. |
 | 6 | M3 × 8 screw, any head | Clamp bars to bosses. |
 | 4 | M3 × 6 self-tapping screw | Perfboard to the floor pegs. |
-| 2 | M3 screw | USB-C flange to the back wall. **TODO (owner):** record the length. |
+| — | Hot glue | Holds the USB-C connector in the back-wall cutout. |
 | 4 | 10 mm stick-on rubber foot | Recesses in the bottom of the shell. |
 
 ### Filament
@@ -185,6 +185,8 @@ Use these print settings:
 - Walls: 3.
 - Infill: 20%.
 
+The shell has a 15 × 8.5 mm cutout for the USB-C connector, 40 mm right of the center line. The model also has two 2.5 mm holes, 22.4 mm apart, for M3 screws through the connector flange. The finished unit does not use these holes. Its connector is fixed with hot glue. The screw mount is an option.
+
 Print the panel first. Do a test fit of each panel part before you print the shell. The labels are 0.6 mm deep. You can fill them with a paint marker. A textured build plate gives a good front surface on the panel.
 
 > **Note:** The shell STL includes the last change to the USB-C mount position. No test print of this revision is recorded. **TODO (owner):** confirm a test print of the current shell.
@@ -268,12 +270,17 @@ Do these checks each time you change the wiring.
 
 1. Install the six M3 heat-set inserts in the panel posts of the shell.
 2. Glue the LDR into the hole in the top plate from the inside. The face of the LDR must be flush with the top surface.
-3. Attach the panel-mount USB-C connector to the back wall with two M3 screws.
-4. Attach the perfboard to the four floor pegs with four M3 × 6 self-tapping screws.
-5. Put the ESP32 into its headers.
-6. Connect the USB-C extension cable to the ESP32.
-7. Connect the wires from the panel and the LDR to the perfboard connectors.
-8. Put the four rubber feet in the recesses on the bottom.
+3. Put the panel-mount USB-C connector into the back-wall cutout from the inside.
+
+   > **CAUTION:** Do not let hot glue go into the USB-C socket.
+
+4. Apply hot glue around the connector body on the inside of the back wall.
+5. Let the glue become hard before you connect a cable.
+6. Attach the perfboard to the four floor pegs with four M3 × 6 self-tapping screws.
+7. Put the ESP32 into its headers.
+8. Connect the USB-C extension cable to the ESP32.
+9. Connect the wires from the panel and the LDR to the perfboard connectors.
+10. Put the four rubber feet in the recesses on the bottom.
 
 ### Close the case
 
@@ -287,7 +294,6 @@ Do these checks each time you change the wiring.
 These items are not known yet. They are also marked TODO in the text above.
 
 - Supplier links and the cost of each part.
-- The length of the USB-C flange screws.
 - The filament and the color of the finished unit.
 - A test print of the current shell revision.
 - The calibrated value of the light sensor threshold. See [firmware.md](firmware.md#configuration).

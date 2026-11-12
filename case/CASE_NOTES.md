@@ -33,7 +33,7 @@ PLA or PETG, 0.2 mm layers, 3 walls, 20% infill. Print the **panel first** and t
 | 6 | M3 × 8 flat-head (countersunk) screws | panel → shell |
 | 6 | M3 × 8 screws (any head) | clamp bars → bosses |
 | 4 | M3 × 6 self-tapping | perfboard → floor pegs (2.5 mm pilot holes) |
-| 2 | M3 screws (length not recorded yet) | flange → back wall; they thread straight into 2.5 mm holes in a 5.5 mm thick pad |
+| — | hot glue | USB-C connector → back-wall cutout. The model also has two 2.5 mm holes in a 5.5 mm pad for an optional M3 flange mount; the built unit does not use them |
 | 4 | 10 mm stick-on rubber feet | recesses on the bottom |
 
 ## How it goes together
@@ -46,7 +46,7 @@ PLA or PETG, 0.2 mm layers, 3 walls, 20% infill. Print the **panel first** and t
 6. **LDR** (GL5539): 5.2 mm hole in the shell's top plate (right-rear); glue in from inside, face flush, ~10 cm leads down to the perfboard.
 7. **Panel → shell**: 6 × M3 flat-head from the front into inserts in the posts (2 bottom corners, 2 on the chamfers, 2 along the top edge).
 8. **Perfboard** (4 × 6 cm) on 4 floor pegs, 18 mm left of centre. The ESP32's USB-C port sits at the board's right edge, facing the right side wall. Set `pcb_hole_dx/dy` to your board's real corner-hole spacing.
-9. **USB-C panel mount** in the back wall, 40 mm right of centre, so its body and cable stay clear of the perfboard. 15 × 8.5 cutout for a body about 14.4 wide, screw holes 22.4 apart, measured on the real connector. The 0.3 m cable sweeps round inside and plugs into the ESP32. See `previews/floor_layout.png`.
+9. **USB-C panel mount** in the back wall, 40 mm right of centre, so its body and cable stay clear of the perfboard. 15 × 8.5 cutout for a body about 14.4 wide, screw holes 22.4 apart, measured on the real connector. The 0.3 m cable sweeps round inside and plugs into the ESP32. See `previews/floor_layout.png`. The built unit holds the connector in the cutout with hot glue; the flange screw holes are an option.
 
 ## ⚠️ One change on the displays
 

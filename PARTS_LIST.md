@@ -69,7 +69,7 @@ See **`WIRING_DIAGRAM.svg`** (or `.png`) for the full picture.
 The case is designed: **`case/ISS_console.scad`** (parametric OpenSCAD), STLs in `case/stl/`, previews in `case/previews/`, and everything about printing, assembly and the measurements still needed in **`case/CASE_NOTES.md`**.
 - Sloped cockpit panel tilted 35° back from vertical, 144 × 85 × 96.5 mm, two main prints (front panel + rear shell) plus 3 small clamp bars.
 - **USB-C:** the panel-mount extension sits in the back wall, 40 mm right of centre; the ESP32 stays on the perfboard with its port facing the right side wall.
-- **Heat-set inserts:** M3 only — 6 for the panel screws, 4 for the display clamp bars. M3 self-tap into the perfboard pegs and the USB-C flange. No M2 needed: the displays are held by clamp bars, not by their mounting holes.
+- **Heat-set inserts:** M3 only — 6 for the panel screws, 4 for the display clamp bars. M3 self-tap into the perfboard pegs. The USB-C connector is hot-glued into the back wall; the model's flange screw holes are optional. No M2 needed: the displays are held by clamp bars, not by their mounting holes.
 - **Displays:** swap the in-plane right-angle header for a straight one pointing backwards (or solder wires) — see CASE_NOTES.
 
 ### Tools
@@ -237,7 +237,7 @@ See **`PERFBOARD_LAYOUT.png`**: headers in columns 3 and 13 (your board's pin ro
 - **Why 4 × 6 instead of 3 × 7:** the ESP32's two pin rows sit ~9–10 holes apart. A 3 × 7 cm board is only ~10 holes wide, so there's no room beside the rows for wiring, and at 10-hole spacing it doesn't fit at all. The 4 × 6 cm board (~14 holes wide) leaves spare columns beside each row for solder connections.
 - **Breadboard testing:** this ESP32 is too wide to leave free holes on both sides of one breadboard. Snap two breadboards together (remove the power rail between them) so the ESP32 straddles both. The +/− rails work normally: jumper 3V3 → + and GND → −.
 - **Getting the header spacing exactly right:** push both female header strips onto the ESP32's pins, set the whole assembly on the perfboard, and solder the headers in place. Then pull the ESP32 out.
-- **USB-C:** put the headers at the very end of the board, with the USB end of the ESP32 overhanging the edge by a few mm. Mount that board edge right against the case wall's USB-C cutout.
+- **USB-C:** put the headers at the very end of the board, with the USB end of the ESP32 overhanging the edge by a few mm. In the current case the ESP32's port faces the right side wall, and the extension cable runs from it to the back-wall connector.
 - **Connectors, not direct wires:** add male pin headers (or JST-XH) in rows 1–2, columns 1–2 and column 14 for the 3 displays (7 pins each), the 4 switches, the light sensor and the LED. Then everything unplugs for case assembly.
 - **Mounting:** M3 screws through the perfboard corner holes into heat-set inserts. Brace the USB end well, because plugging in the cable pushes on it.
 
