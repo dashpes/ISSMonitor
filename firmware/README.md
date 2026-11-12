@@ -1,5 +1,7 @@
 # ISS Monitor — firmware
 
+> **This file is the development log.** It records the work in date order, with bench measurements. Some sections describe an earlier state, for example the parts that were not yet wired. For the current procedures, see [../README.md](../README.md) and [../docs/firmware.md](../docs/firmware.md).
+
 Firmware for a three-screen desk console that tracks the ISS in real time.
 ESP32 + 3x GC9A01 round displays. See `../PARTS_LIST.md` for the hardware and
 `../case/CASE_NOTES.md` for the enclosure.
