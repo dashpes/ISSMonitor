@@ -203,4 +203,9 @@ This procedure is for a console that you have already wired. [docs/firmware.md](
 
 ## License
 
-MIT. See [LICENSE](LICENSE). The coastline and land data come from Natural Earth, which is in the public domain. The files in `firmware/test/unity_vendor/` are from the Unity project and have their own MIT license header.
+| Files | License |
+|---|---|
+| Everything in `case/`: the OpenSCAD model, the STL files, the panel drawing and the renders | CC BY 4.0. See [case/LICENSE](case/LICENSE). |
+| All other files: firmware, tests, scripts and documentation | MIT. See [LICENSE](LICENSE). |
+
+The coastline and land data come from Natural Earth, which is in the public domain. The files in `firmware/test/unity_vendor/` are from the Unity project and have their own MIT license header.
