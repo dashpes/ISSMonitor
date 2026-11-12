@@ -67,8 +67,8 @@ See **`WIRING_DIAGRAM.svg`** (or `.png`) for the full picture.
 
 ### Case notes
 The case is designed: **`case/ISS_console.scad`** (parametric OpenSCAD), STLs in `case/stl/`, previews in `case/previews/`, and everything about printing, assembly and the measurements still needed in **`case/CASE_NOTES.md`**.
-- Sloped 30° cockpit panel, 190 × 95 × 92 mm, two main prints (front panel + rear shell) plus 3 small clamp bars.
-- **USB-C:** the panel-mount extension sits in the back wall; the ESP32 stays on the perfboard.
+- Sloped cockpit panel tilted 35° back from vertical, 144 × 85 × 96.5 mm, two main prints (front panel + rear shell) plus 3 small clamp bars.
+- **USB-C:** the panel-mount extension sits in the back wall, 40 mm right of centre; the ESP32 stays on the perfboard with its port facing the right side wall.
 - **Heat-set inserts:** M3 only — 6 for the panel screws, 4 for the display clamp bars. M3 self-tap into the perfboard pegs and the USB-C flange. No M2 needed: the displays are held by clamp bars, not by their mounting holes.
 - **Displays:** swap the in-plane right-angle header for a straight one pointing backwards (or solder wires) — see CASE_NOTES.
 
@@ -80,6 +80,8 @@ Soldering iron, multimeter, flush cutters, wire strippers, Bambu P1S for the cas
 ## 2. Pin map
 
 Match wires by the **label printed on the board** (D18, D23, 3V3…), not by physical position — pin order varies between board and module versions.
+
+> **The pin map below follows `firmware/include/config.h`, which describes the unit as built.** `WIRING_DIAGRAM.svg/.png` shows the first plan. Two things differ: the four mode switches went into the panel in a different order, and the two encoders swapped pins. Where the diagram and this table disagree, this table and `config.h` are right.
 
 ### Displays (shared SPI bus)
 
@@ -109,17 +111,17 @@ All three displays share every line **except CS**.
 
 | Part | ESP32 pin | Wiring |
 |---|---|---|
-| SW1 — **NIGHT** (dim / red UI) | **D32** | one leg → D32, other leg → GND |
-| SW2 — **UNITS** (km ↔ mi) | **D33** | one leg → D33, other leg → GND |
-| SW3 — **ALERT** (arm the pass LED) | **D25** | one leg → D25, other leg → GND |
-| SW4 — **TRACK** (orbit trail on/off) | **D26** | one leg → D26, other leg → GND |
+| SW1 — **NIGHT** (dim / red UI), panel slot 1 | **D32** | one leg → D32, other leg → GND |
+| SW2 — **UNITS** (km ↔ mi), panel slot 2 | **D26** | one leg → D26, other leg → GND (diagram: D33) |
+| SW3 — **ALERT** (arm the pass LED), panel slot 3 | **D33** | one leg → D33, other leg → GND (diagram: D25) |
+| SW4 — **TRACK** (orbit trail on/off), panel slot 4 | **D25** | one leg → D25, other leg → GND (diagram: D26) |
 | Light sensor (LDR + 100 kΩ) | **D34** | 3V3 → LDR → **D34** → 100 kΩ → GND. LDR sits in the shell's top plate, ~10 cm leads |
 | "ISS OVERHEAD" LED (green) | **D13** | D13 → 150 Ω → LED long leg (+); short leg (−) → GND |
 | C1 100–470 µF electrolytic | — | + leg → 3V3, − leg (stripe) → GND, close to the board |
 | SW5 — **AUX 1** | **D14** | one leg → D14, other leg → GND |
 | SW6 — **AUX 2** | **D15** | one leg → D15, other leg → GND (strapping pin — harmless for a toggle) |
-| Encoder L (lower-left screen) CLK / DT / SW | **VP 36 / VN 39 / D27** | KY-040 `+` → **3V3**, GND → GND. 36/39 are input-only; the module's own pull-ups cover CLK/DT. SW uses `INPUT_PULLUP` |
-| Encoder R (lower-right screen) CLK / DT / SW | **D35 / D4 / D19** | same |
+| Encoder L (lower-left screen) CLK / DT / SW | **D35 / D4 / D19** | KY-040 `+` → **3V3**, GND → GND. 35 is input-only; the module's own pull-ups cover CLK/DT. SW uses `INPUT_PULLUP`. (Diagram: these are Encoder R) |
+| Encoder R (lower-right screen) CLK / DT / SW | **VP 36 / VN 39 / D27** | same. 36/39 are input-only. (Diagram: these are Encoder L) |
 
 **Switches don't need resistors:** the code enables the ESP32's internal pull-ups (`INPUT_PULLUP`). Switch **ON = pin reads LOW**.
 
@@ -135,6 +137,8 @@ All three displays share every line **except CS**.
 ---
 
 ## 3. Optional 3-position mode selector (MTS-103 ON-OFF-ON)
+
+> **Not supported by the current build.** D27 and D19 are now the encoder push switches, and the firmware has no code for this selector. Kept as a record of the idea.
 
 | Switch pin | Connect to |
 |---|---|
@@ -194,6 +198,8 @@ Everything runs from the ESP32's **USB-C port**. Total draw is well under 500 mA
 
 ## 5. Software setup
 
+> **Superseded.** The firmware builds with PlatformIO, not the Arduino IDE, and the libraries are fetched by `scripts/vendor_libs.sh`. See `docs/firmware.md` for the current procedure. The data sources below are still correct.
+
 1. **Arduino IDE** → Boards Manager → install **esp32 by Espressif**.
 2. Board: **ESP32 Dev Module** (or **DOIT ESP32 DEVKIT V1**). Upload speed 921600.
 3. Libraries (Library Manager):
@@ -223,6 +229,8 @@ Everything runs from the ESP32's **USB-C port**. Total draw is well under 500 mA
 ---
 
 ## 6a. Perfboard layout (4 × 6 cm)
+
+> **The case changed after this drawing.** The latest shell (`case/ISS_console.scad`) puts the ESP32's USB-C port at the board's right edge, facing the right side wall, and the panel-mount USB-C 40 mm right of centre. See `case/previews/floor_layout.png`. The column and row plan below still applies.
 
 See **`PERFBOARD_LAYOUT.png`**: headers in columns 3 and 13 (your board's pin rows are 10 holes / 1.0" apart), rows 6–20. The USB-C end overhangs the short edge that faces the case's back wall. Connectors go in rows 1–2, columns 1–2 and column 14, because the ESP32's antenna end hovers over rows 3–5.
 

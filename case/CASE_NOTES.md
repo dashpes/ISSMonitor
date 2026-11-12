@@ -33,7 +33,7 @@ PLA or PETG, 0.2 mm layers, 3 walls, 20% infill. Print the **panel first** and t
 | 6 | M3 × 8 flat-head (countersunk) screws | panel → shell |
 | 6 | M3 × 8 screws (any head) | clamp bars → bosses |
 | 4 | M3 × 6 self-tapping | perfboard → floor pegs (2.5 mm pilot holes) |
-| 2 | the screws that come with the USB-C panel mount | flange → back wall (2.6 mm pilots into a 5.5 mm thick pad) |
+| 2 | M3 screws (length not recorded yet) | flange → back wall; they thread straight into 2.5 mm holes in a 5.5 mm thick pad |
 | 4 | 10 mm stick-on rubber feet | recesses on the bottom |
 
 ## How it goes together
@@ -45,8 +45,8 @@ PLA or PETG, 0.2 mm layers, 3 walls, 20% infill. Print the **panel first** and t
 5. **LED**: 5.1 mm press-fit hole top-left of the top screen ("PASS"); the flange stops on the back.
 6. **LDR** (GL5539): 5.2 mm hole in the shell's top plate (right-rear); glue in from inside, face flush, ~10 cm leads down to the perfboard.
 7. **Panel → shell**: 6 × M3 flat-head from the front into inserts in the posts (2 bottom corners, 2 on the chamfers, 2 along the top edge).
-8. **Perfboard** (4 × 6 cm) on 4 floor pegs; set `pcb_hole_dx/dy` to your board's real corner-hole spacing.
-9. **USB-C panel mount** in the back wall, 14 × 8 cutout, screw holes 21.5 apart — measure yours. The 0.3 m cable coils inside and plugs into the ESP32.
+8. **Perfboard** (4 × 6 cm) on 4 floor pegs, 18 mm left of centre. The ESP32's USB-C port sits at the board's right edge, facing the right side wall. Set `pcb_hole_dx/dy` to your board's real corner-hole spacing.
+9. **USB-C panel mount** in the back wall, 40 mm right of centre, so its body and cable stay clear of the perfboard. 15 × 8.5 cutout for a body about 14.4 wide, screw holes 22.4 apart, measured on the real connector. The 0.3 m cable sweeps round inside and plugs into the ESP32. See `previews/floor_layout.png`.
 
 ## ⚠️ One change on the displays
 
@@ -54,15 +54,17 @@ The Hosyond modules come with a **right-angle header lying in the plane of the P
 
 ## Pin plan (everything used — no spare GPIOs after this)
 
+This table follows `firmware/include/config.h`, which matches the unit as built. The encoders and the mode switches differ from the first plan in `WIRING_DIAGRAM.svg`.
+
 Assumes the screens are the 7-pin type with no backlight pin (matches the photo), which frees D4.
 
 | Signal | ESP32 pin | Notes |
 |---|---|---|
-| Encoder L: CLK / DT / SW | **GPIO 36 (VP)** / **GPIO 39 (VN)** / **D27** | 36/39 are input-only; the KY-040's on-board 10 kΩ pull-ups cover CLK/DT. SW uses `INPUT_PULLUP`. |
-| Encoder R: CLK / DT / SW | **GPIO 35** / **D4** / **D19** | same |
+| Encoder L: CLK / DT / SW | **GPIO 35** / **D4** / **D19** | 35 is input-only; the KY-040's on-board 10 kΩ pull-ups cover CLK/DT. SW uses `INPUT_PULLUP`. |
+| Encoder R: CLK / DT / SW | **GPIO 36 (VP)** / **GPIO 39 (VN)** / **D27** | same |
 | AUX 1 toggle | **D14** | `INPUT_PULLUP` |
 | AUX 2 toggle | **D15** | `INPUT_PULLUP`. Strapping pin, but only affects boot-log output — harmless. |
-| NIGHT / UNITS / ALERT / TRACK | D32 / D33 / D25 / D26 | unchanged |
+| NIGHT / UNITS / ALERT / TRACK | D32 / D26 / D33 / D25 | panel slots 1–4, left to right |
 | LDR, LED | D34, D13 | unchanged |
 
 If you'd rather keep D15 free, drop AUX 2.
@@ -75,7 +77,7 @@ If you'd rather keep D15 free, drop AUX 2.
 | `disp_glass_h` | glass top above the PCB front face | 2.5 |
 | `disp_pcb_d` | PCB diameter (round part) | 38 |
 | `tab_w`, `tab_len` | header tab width, and how far it sticks past the round edge | 22, 16 |
-| `usbc_cut`, `usbc_hole_sp` | USB-C flange: body cutout (w × h), screw spacing | 14 × 8, 21.5 |
+| `usbc_cut`, `usbc_hole_sp` | USB-C flange: body cutout (w × h), screw spacing | 15 × 8.5, 22.4 (measured) |
 | `pcb_hole_dx/dy` | perfboard corner-hole spacing | 54, 34 |
 | `insert_d` | heat-set insert OD minus ~0.4 | 4.0 |
 
