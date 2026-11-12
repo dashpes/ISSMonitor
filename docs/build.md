@@ -69,7 +69,7 @@ PLA or PETG. **TODO (owner):** record the filament and the color that the finish
 
 This table comes from `firmware/include/config.h`. That file is the only source of the pin numbers in the firmware. If you change a wire, change `config.h` to match.
 
-> **Note:** `WIRING_DIAGRAM.png` shows the first pin plan. In the finished unit, the UNITS, ALERT and TRACK switches use different pins, and the two knobs use each other's pins. Use this table.
+> **Note:** `WIRING_DIAGRAM.png` shows an earlier pin plan. `config.h` is the authority. Where the diagram and this table disagree, use this table.
 
 ![Wiring diagram, first pin plan](../WIRING_DIAGRAM.png)
 
@@ -163,7 +163,7 @@ Connect C1 between 3V3 and GND, near the ESP32 pins. Connect the leg with the st
 
 The ESP32 plugs into two female header strips in columns 3 and 13. The connectors for the panel parts are in rows 1–2, columns 1–2 and column 14. The antenna end of the ESP32 is above rows 3–5, so do not put connectors there.
 
-> **Note:** The perfboard drawing shows the USB-C port toward the back wall. The current case model turns the board so that the USB-C port faces the right side wall. The column and row plan stays the same. See the floor layout below.
+> **Note:** `PERFBOARD_LAYOUT.png` shows an earlier board position. The case model is the authority: the USB-C port of the ESP32 faces the right side wall. The column and row plan stays the same. See the floor layout below.
 
 ![Floor layout of the current case model](../case/previews/floor_layout.png)
 
@@ -188,8 +188,6 @@ Use these print settings:
 The shell has a 15 × 8.5 mm cutout for the USB-C connector, 40 mm right of the center line. The model also has two 2.5 mm holes, 22.4 mm apart, for M3 screws through the connector flange. The finished unit does not use these holes. Its connector is fixed with hot glue. The screw mount is an option.
 
 Print the panel first. Do a test fit of each panel part before you print the shell. The labels are 0.6 mm deep. You can fill them with a paint marker. A textured build plate gives a good front surface on the panel.
-
-> **Note:** The shell STL includes the last change to the USB-C mount position. No test print of this revision is recorded. **TODO (owner):** confirm a test print of the current shell.
 
 ### Change the model
 
@@ -295,5 +293,3 @@ These items are not known yet. They are also marked TODO in the text above.
 
 - Supplier links and the cost of each part.
 - The filament and the color of the finished unit.
-- A test print of the current shell revision.
-- The calibrated value of the light sensor threshold. See [firmware.md](firmware.md#configuration).

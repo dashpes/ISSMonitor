@@ -42,7 +42,7 @@ The three displays sit in a triangle. The globe is at the top. The telemetry scr
 - The view follows the point below the ISS. The view moves a small step on each frame, so the globe drifts and does not jump.
 - A cross with a circle shows the ISS.
 - A small dot in the warning color shows the observer location.
-- When the TRACK switch is on, a line shows the recent ground track.
+- When the TRACK switch is on, a line shows the ground track for the last 90 seconds.
 - The text at the bottom shows the latitude and the longitude of the ISS.
 - This screen has no knob and one mode.
 
@@ -169,10 +169,9 @@ This procedure is for a console that you have already wired. [docs/firmware.md](
 ## Status and known limits
 
 - **AUX 1 and AUX 2 have no function.** The firmware reads them but does not use them. `config.h` has constants for a Morse code beacon on AUX 1, but no code uses them yet.
-- **The ground track is short.** The track keeps the last 90 positions, one each second. A comment in `state.h` expects one point each 30 seconds. **TODO (owner):** confirm the intended track length.
+- **The ground track is short.** The globe shows the last 90 positions, one each second. That is 90 seconds of orbit.
 - **The observer location is fixed at compile time.** Change it in `config.h`.
 - **The TLE download does not verify the server certificate.** The worst result of a false TLE is a wrong position on the screens.
-- **The case revision in the repository has no recorded test print.** The last change moved the USB-C mount. See [docs/build.md](docs/build.md#print-the-case).
 
 ## Glossary
 

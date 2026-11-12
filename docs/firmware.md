@@ -153,7 +153,7 @@ All settings are in `firmware/include/config.h`. Each setting is a `constexpr` i
 
 | Setting | Default | Function |
 |---|---|---|
-| `LDR_NIGHT_THRESHOLD` | 800 | ADC reading below which the console changes to the night palette. **TODO (owner):** record the calibrated value for the finished unit. |
+| `LDR_NIGHT_THRESHOLD` | 800 | ADC reading below which the console changes to the night palette. |
 | `LDR_HYSTERESIS` | 150 | The console changes back to the day palette only above threshold + hysteresis (950). This stops the palette changes on ADC noise. |
 | `LDR_EMA_SHIFT` | 3 | Smoothing. Each new reading moves the average by 1/8 of the difference. The time constant is approximately 0.8 s. |
 
