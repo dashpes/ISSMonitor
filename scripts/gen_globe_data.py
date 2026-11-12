@@ -3,7 +3,7 @@
 gen_globe_data.py -- build the fixed geometry the globe screen draws.
 
     ./scripts/gen_globe_data.py                 regenerate the header + preview
-    ./scripts/gen_globe_data.py --tolerance-px 1.4 --view 33,-117
+    ./scripts/gen_globe_data.py --tolerance-px 1.4 --view 34,-118
 
 Writes firmware/src/ui/globe_data.h (coastlines, graticule, equator) and
 globe_preview.svg, which renders that exact table through the exact
@@ -620,7 +620,7 @@ def write_preview(coast, grat, equator, bits, n, view_lat, view_lon, scale):
     if ivis:
         line(ix - 7, iy, ix + 7, iy, ACCENT)
         line(ix, iy - 7, ix, iy + 7, ACCENT)
-    hx, hy, hvis = project([c * SCALE for c in to_unit(-117.826, 33.746)])
+    hx, hy, hvis = project([c * SCALE for c in to_unit(-118.2437, 34.0522)])
     if hvis:
         for dy in (0, 1):
             for dx in (0, 1):

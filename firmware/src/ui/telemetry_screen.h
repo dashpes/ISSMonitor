@@ -3,7 +3,7 @@
 // Left screen. Four modes, cycled by the left encoder (or 1/2 on the console):
 //   0 SPEED     big number + 270-degree arc gauge
 //   1 ALTITUDE  same treatment
-//   2 POSITION  lat/lon and distance from Tustin
+//   2 POSITION  lat/lon and distance from the observer
 //   3 STATUS    link state, TLE age, queued passes
 //
 // The render loop caches the last values it drew and returns early when

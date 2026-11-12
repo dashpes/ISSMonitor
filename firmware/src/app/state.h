@@ -47,7 +47,7 @@ struct AppState {
     orbit::GeoPoint iss{};           // current subpoint
     double   speed_kmh = 0.0;
     double   ground_distance_km = 0.0;
-    orbit::LookAngle iss_look{};     // from Tustin, right now
+    orbit::LookAngle iss_look{};     // from the observer, right now
 
     static constexpr int kMaxPasses = 4;
     orbit::Pass passes[kMaxPasses]{};

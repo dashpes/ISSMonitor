@@ -141,7 +141,7 @@ survives exactly. Draw calls on the globe sprite take a palette index now;
 To change the detail level or the viewpoint of the preview:
 
 ```bash
-./scripts/gen_globe_data.py --tolerance-px 0.8 --view 33,-117
+./scripts/gen_globe_data.py --tolerance-px 0.8 --view 34,-118
 ```
 
 **2026-09-17 — globe frame cost, measured on the bench.**

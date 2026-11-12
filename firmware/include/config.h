@@ -105,10 +105,10 @@ constexpr uint8_t PIN_ENC_R_SW  = 27;
 constexpr uint8_t PIN_LDR = 34;  // ADC1, keeps working with Wi-Fi on
 constexpr uint8_t PIN_LED = 13;  // green "ISS OVERHEAD"
 
-// ---- Observer: Tustin, CA ----
-constexpr double OBS_LAT_DEG =   33.746;
-constexpr double OBS_LON_DEG = -117.826;
-constexpr double OBS_ALT_M   =   35.0;
+// ---- Observer: Los Angeles City Hall. Set these to your location. ----
+constexpr double OBS_LAT_DEG =   34.0522;
+constexpr double OBS_LON_DEG = -118.2437;
+constexpr double OBS_ALT_M   =   93.0;
 
 // ---- Network ----
 constexpr char TLE_URL[] =

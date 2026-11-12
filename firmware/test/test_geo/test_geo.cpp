@@ -38,24 +38,24 @@ void test_wrap_longitude(void) {
     assertClose(180.0,  wrapLongitude(180.0),  1e-9);
     assertClose(-179.0, wrapLongitude(181.0),  1e-9);
     assertClose(179.0,  wrapLongitude(-181.0), 1e-9);
-    assertClose(-117.826, wrapLongitude(242.174), 1e-6);
+    assertClose(-118.2437, wrapLongitude(241.7563), 1e-6);
 }
 
 // --------------------------------------------------------------------------
 // groundDistanceKm  (reference: haversine, R = 6371.0088 km)
 // --------------------------------------------------------------------------
 void test_distance_same_point(void) {
-    GeoPoint t{33.746, -117.826, 0.0};
+    GeoPoint t{34.0522, -118.2437, 0.0};
     assertClose(0.0, groundDistanceKm(t, t), 1e-9);
 }
 
 void test_distance_known_pairs(void) {
-    GeoPoint tustin{33.746, -117.826, 0.0};
     GeoPoint la{34.0522, -118.2437, 0.0};
+    GeoPoint sf{37.7749, -122.4194, 0.0};
     GeoPoint nyc{40.7128, -74.0060, 0.0};
 
-    assertClose(51.434,    groundDistanceKm(tustin, la),  0.01);
-    assertClose(3914.596,  groundDistanceKm(tustin, nyc), 0.10);
+    assertClose(559.121,   groundDistanceKm(la, sf),  0.01);
+    assertClose(3935.752,  groundDistanceKm(la, nyc), 0.10);
 }
 
 void test_distance_degenerate(void) {
@@ -97,7 +97,7 @@ void test_distance_antipodal(void) {
 }
 
 void test_distance_is_symmetric(void) {
-    GeoPoint a{33.746, -117.826, 0.0};
+    GeoPoint a{34.0522, -118.2437, 0.0};
     GeoPoint b{40.7128, -74.0060, 0.0};
     const double ab = groundDistanceKm(a, b);
     TEST_ASSERT_TRUE_MESSAGE(ab > 1000.0, "guard: must not trivially pass on a stub");
@@ -108,8 +108,8 @@ void test_distance_is_symmetric(void) {
 // lookAngle
 // --------------------------------------------------------------------------
 void test_look_directly_overhead(void) {
-    GeoPoint obs{33.746, -117.826, 0.035};
-    GeoPoint sat{33.746, -117.826, 420.0};
+    GeoPoint obs{34.0522, -118.2437, 0.035};
+    GeoPoint sat{34.0522, -118.2437, 420.0};
     LookAngle l = lookAngle(obs, sat);
 
     assertClose(90.0,    l.elevation_deg, 1e-6);
@@ -118,8 +118,8 @@ void test_look_directly_overhead(void) {
 }
 
 void test_look_due_north(void) {
-    GeoPoint obs{33.746, -117.826, 0.035};
-    GeoPoint sat{38.746, -117.826, 420.0};   // 5 degrees north, same meridian
+    GeoPoint obs{34.0522, -118.2437, 0.035};
+    GeoPoint sat{39.0522, -118.2437, 420.0};   // 5 degrees north, same meridian
     LookAngle l = lookAngle(obs, sat);
 
     assertClose(0.0,     normalizeDeg(l.azimuth_deg + 180.0) - 180.0, 1e-6);
@@ -140,8 +140,8 @@ void test_look_due_east(void) {
 void test_look_below_horizon(void) {
     // Other side of the planet: elevation must come back negative, not NaN
     // and not clamped to zero. The pass finder depends on the sign.
-    GeoPoint obs{33.746, -117.826, 0.035};
-    GeoPoint sat{-33.746, 62.174, 420.0};
+    GeoPoint obs{34.0522, -118.2437, 0.035};
+    GeoPoint sat{-34.0522, 61.7563, 420.0};
     TEST_ASSERT_TRUE(lookAngle(obs, sat).elevation_deg < 0.0);
 }
 
@@ -149,7 +149,7 @@ void test_look_below_horizon(void) {
 // projectOrthographic
 // --------------------------------------------------------------------------
 void test_projection_center(void) {
-    GeoPoint c{33.746, -117.826, 0.0};
+    GeoPoint c{34.0522, -118.2437, 0.0};
     ScreenPoint p = projectOrthographic(c, c, 120, 120, 110);
     TEST_ASSERT_TRUE(p.visible);
     TEST_ASSERT_INT_WITHIN(1, 120, p.x);
@@ -214,8 +214,8 @@ void test_unit_vector_known_directions(void) {
     assertClose(1.0, pole.z, 1e-6);
 
     // Altitude must not change a direction, whatever the ISS is doing.
-    const UnitVec high = toUnitVector({33.746, -117.826, 420.0});
-    const UnitVec low  = toUnitVector({33.746, -117.826, 0.0});
+    const UnitVec high = toUnitVector({34.0522, -118.2437, 420.0});
+    const UnitVec low  = toUnitVector({34.0522, -118.2437, 0.0});
     assertClose(low.x, high.x, 1e-6);
     assertClose(low.y, high.y, 1e-6);
     assertClose(low.z, high.z, 1e-6);
@@ -234,7 +234,7 @@ void test_unit_vectors_are_unit_length(void) {
 }
 
 void test_ortho_view_center_and_far_side(void) {
-    const GeoPoint center{33.746, -117.826, 0.0};
+    const GeoPoint center{34.0522, -118.2437, 0.0};
     const OrthoView view = makeOrthoView(center, 120, 120, 104);
 
     // Looking straight down the middle: dead centre of the disc.
@@ -299,7 +299,7 @@ void test_unproject_off_disc(void) {
 }
 
 void test_unproject_centre_is_view_axis(void) {
-    const GeoPoint centre{33.746, -117.826, 0.0};
+    const GeoPoint centre{34.0522, -118.2437, 0.0};
     const OrthoView view = makeOrthoView(centre, 120, 120, 104);
 
     // The middle of the disc looks straight down the view axis, so it must
